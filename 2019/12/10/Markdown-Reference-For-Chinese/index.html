@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="sesameman" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      Markdown For Typora(中文) 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <a href="/">SesameMan的个人博客</a>
+</div>
+
+
+      <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/sesameman">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="kang1123581321@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+</p>
+
+
+      <div class="main">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+
+<div class="post">
+  <h3 class="date">
+    Dec 10, 2019
+  </h3>
+  <h1>
+    Markdown For Typora(中文)
+  </h1>
+  <div class="content markdown-body">
+    <h1 id="Markdown-For-Typora"><a href="#Markdown-For-Typora" class="headerlink" title="Markdown For Typora"></a>Markdown For Typora</h1><h2 id="概论"><a href="#概论" class="headerlink" title="概论"></a>概论</h2><p><strong>Markdown</strong>是由<a target="_blank" rel="noopener" href="http://daringfierball.net/" title="英勇的火球">Daring Fireball</a>创立的文档结构；原始的引导文件请戳<a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/syntax">这里</a>。但是，在不同的编辑器\解释器中，Markdown有不同的语法规则。<strong>Typora</strong>所使用的是<a target="_blank" rel="noopener" href="https://help.github.com/articles/github-flavored-markdown/">GitHub Flavored Markdown</a>。下述<em><strong>Markdown文档</strong></em>将被简写为<em><strong>md文档</strong></em>。</p>
+<p>[TOC]</p>
+<h2 id="分块原理"><a href="#分块原理" class="headerlink" title="分块原理"></a>分块原理</h2><h3 id="分段与换行"><a href="#分段与换行" class="headerlink" title="分段与换行"></a>分段与换行</h3><p>一个段落由多个句子构成。在最原始原始的Markdown文档中，不同段落由两个或更多的<strong>空行</strong>分开;但在Typora中，您只需要输入一个空行(敲击一次回车)就能进入下一段。<br/>按下<code>Shift</code>+<code>Return</code>来创建一个换行符。大多数md解释器将不会显示一个换行符，若想让其他解释器中识别你的换行符，可在段落最后加两个空格，或直接插入代码<code>&lt;br/&gt;</code>(<code>&lt;br/&gt;</code>即为换行符)。<br>​有关分段与换行的关系请戳<a target="_blank" rel="noopener" href="https://www.sohu.com/a/164173199_825825">这里</a>或者参照<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37872792/article/details/81144427">StandByMeQuan的博客</a>给出的解释辅助理解。查看该文档的同学可以进入源代码模式查看分段与换行这一部分的代码，看起来像是三段的文本实际上是由换行符连接的三行，即<strong>分段与换行</strong>仅由一段构成。能否理解分段与换行的区别同能否学好Markdown语法关系不大。</p>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>在一行的开头插入1-6个井号(#)字符，生成1-6级标题，例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"><span class="section">###### 六级标题</span></span><br></pre></td></tr></table></figure>
+
+<p>在Typora中，输入上述标题按回车键会直接生成标题。</p>
+<h3 id="引用块儿"><a href="#引用块儿" class="headerlink" title="引用块儿"></a>引用块儿</h3><p>Markdown标记引用块儿采用了类似邮件形式的<code>&gt;</code>字符，表现为：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; 这个引用块儿应用了两段文字，这是第一段</span></span><br><span class="line"><span class="quote">&gt; </span></span><br><span class="line"><span class="quote">&gt; 这是第二段</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; 这是另一个引用块儿，不同的引用块儿之间必须含三个空行</span></span><br></pre></td></tr></table></figure>
+
+<p>在Typora中，输入<code>&gt;</code>输入你引用的文字生成引用块儿。Typora将会为您在合适的位置自动插入<code>&gt;</code>或换行符。插入更多的<code>&gt;</code>进行多级引用。</p>
+<blockquote>
+<p>星星之火可以燎原</p>
+<p align="right">——毛泽东</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>苟利国家生死以</p>
+<p align="right">——林则徐</p>
+</blockquote>
+<p align="right">——非法字符</p>
+</blockquote>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>输入<code>* 列表内容</code>将会生成无序列表，<code>+</code> <code>-</code>均可代替<code>*</code>开头生成列表。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 无序列表</span></span><br><span class="line"><span class="bullet">*</span> 能量守恒</span><br><span class="line"><span class="bullet">-</span> 熵增原理</span><br><span class="line"><span class="bullet">+</span> 绝对零度不可达		</span><br></pre></td></tr></table></figure>
+
+<p>输入<code>1. 热力学第一定律</code>将会创建有序列表，源代码如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 有序列表</span></span><br><span class="line"><span class="bullet">1.</span> 热力学第一定律：能量守恒</span><br><span class="line"><span class="bullet">2.</span> 热力学第二定律：熵增原理</span><br><span class="line"><span class="bullet">3.</span> 热力学第三定律：绝对零度不可达</span><br></pre></td></tr></table></figure>
+
+<p>代码效果如下：</p>
+<ul>
+<li>能量守恒</li>
+</ul>
+<ul>
+<li>熵增原理</li>
+</ul>
+<ul>
+<li>绝对零度不可达</li>
+</ul>
+<p>	</p>
+<ol>
+<li>热力学第一定律：能量守恒</li>
+<li>热力学第二定律：熵增原理</li>
+<li>热力学第三定律：绝对零度不可达</li>
+</ol>
+<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>任务列表是带有任务是否完成标识[ ]或者[x]的列表，例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> [x] 标题</span><br><span class="line"><span class="bullet">-</span> [x] 引用</span><br><span class="line"><span class="bullet">-</span> [x] 换行</span><br><span class="line"><span class="bullet">-</span> [ ] 任务列表</span><br><span class="line"><span class="bullet">-</span> [ ] 代码块儿</span><br></pre></td></tr></table></figure>
+
+<p>​		效果如下：</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 标题</li>
+<li><input checked="" disabled="" type="checkbox"> 引用</li>
+<li><input checked="" disabled="" type="checkbox"> 换行</li>
+<li><input disabled="" type="checkbox"> 任务列表</li>
+<li><input disabled="" type="checkbox"> 代码块儿</li>
+</ul>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>代码块儿功能仅在<a target="_blank" rel="noopener" href="https://help.github.com/articles/github-flavored-markdown/">GitHub Flavored Markdown</a>中提供，原始markdown不支持代码块儿。</p>
+<p>代码块儿由&#96;&#96;&#96;后接可选的语言构成，在选择语言后，将会对代码高光处理：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">例子如下：</span><br><span class="line">​<span class="code">```</span></span><br><span class="line"><span class="code">function test() &#123;</span></span><br><span class="line"><span class="code">  console.log(&quot;notice the blank line before this function?&quot;);</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">​```</span></span><br><span class="line"></span><br><span class="line">syntax highlighting:</span><br><span class="line">​<span class="code">```ruby</span></span><br><span class="line"><span class="code">require &#x27;redcarpet&#x27;</span></span><br><span class="line"><span class="code">markdown = Redcarpet.new(&quot;Hello World!&quot;)</span></span><br><span class="line"><span class="code">puts markdown.to_html</span></span><br><span class="line"><span class="code">​```</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数学公式编辑"><a href="#数学公式编辑" class="headerlink" title="数学公式编辑"></a>数学公式编辑</h3><p>您可以用Mathjax来渲染Latex数学表达式。</p>
+<p>插入<code>$$</code>后按下<code>Return</code> 键，将会展开一个支持<em>Tex</em>&#x2F;<em>Latex</em>源数学表达式的输入环境，例如：<br>$$<br>\mathbf{v}_1 \times \mathbf{v}_2 &#x3D;\begin{vmatrix}</p>
+<p>\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \</p>
+<p>\frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 \</p>
+<p>\frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \</p>
+<p>\end{vmatrix}<br>$$<br>在Markdown的源文件里，数学表达式在一对<code>$$</code>中间。如下所示：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\mathbf&#123;v&#125;<span class="emphasis">_1 \times \mathbf&#123;v&#125;_</span>2 =\begin&#123;vmatrix&#125;</span><br><span class="line"></span><br><span class="line">\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\</span><br><span class="line"></span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp; \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\</span><br><span class="line"></span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp; \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\</span><br><span class="line"></span><br><span class="line">\end&#123;vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<p>您可<a target="_blank" rel="noopener" href="https://support.typora.io/Math/">在此</a>找到更多资料。</p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>输入<code>|第一行第一列|第一行第二列|</code>按下回车来创建一个两列表格。</p>
+<p>在表格创建后，将会生成一个工具箱，您可在此自定义大小、自定义对齐方式或者增删表格。您也可以使用环境菜单来增加&#x2F;删除一行&#x2F;一列。</p>
+<p>表的完整语法如下所述，但不必详细了解完整语法，因为表的Markdown源代码是由Typora自动生成的。</p>
+<p>在Markdown源代码中，表述如下</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| ---      | 抽烟 | 不抽烟 |</span><br><span class="line">| --------:|:----:|:-----:|</span><br><span class="line">| 得癌症   | 20   | 18    |</span><br><span class="line">| 没得癌症 | 200  | 190   |</span><br></pre></td></tr></table></figure>
+
+<p>您也可以在表中插入链接、斜体、粗体或删除线。</p>
+<p>在表头中加入(<code>:</code>)可以调整左右对齐和居中。最左侧加冒号表示左对齐； 最右边加冒号表示右对齐； 两侧加冒号表示居中。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| 左对齐  | 居中  | 右对齐 |</span><br><span class="line">| :------------ |:---------------:| -----:|</span><br><span class="line">| col 3 is      | some wordy text | $1600 |</span><br><span class="line">| col 2 is      | centered        |   $12 |</span><br><span class="line">| zebra stripes | are neat        |    $1 |</span><br></pre></td></tr></table></figure>
+
+<h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">您可像这样插入脚注：</span><br><span class="line">   光电效应[^随意起名]和紫外灾难[^紫外]是围绕在经典物理山上的两朵乌云。</span><br><span class="line">   [^随意起名]:光电效应是什么</span><br><span class="line">   [^紫外]:紫外灾难是什么</span><br></pre></td></tr></table></figure>
+
+<p>将会展示为：</p>
+<p>   光电效应[^随意起名]和紫外灾难[^紫外]是围绕在经典物理山上的两朵乌云。<br>[^随意起名]:光电效应是什么<br>[^紫外]:紫外灾难是什么</p>
+<p>​	将鼠标悬停在脚注上标上可查看脚注的内容。</p>
+<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>​	在一空行输入<code>***</code>或<code>---</code>按下回车键将画出一条分割线。</p>
+<hr>
+<hr>
+<p>+++</p>
+<h3 id="YAML前页部分"><a href="#YAML前页部分" class="headerlink" title="YAML前页部分"></a>YAML前页部分</h3><p>Typora现在支持<a target="_blank" rel="noopener" href="http://jekyllrb.com/docs/frontmatter/">YAML前页部分</a>。在顶部输入“-”，然后按“ Return”以引入元数据块。或者，您可以从Typora的顶部菜单插入元数据块。</p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>输入<code>[toc]</code>按下回车键将生成一个目录。该目录会从文档中提取所有标题，且自动更新。</p>
+<h2 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>Markdown支持两种类型的链接：内联链接和参考文献。</p>
+<p>两种类型的链接文本都由[<a href="%22%E9%A1%BB%E5%9C%A8%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E4%B8%8B%E8%BE%93%E5%85%A5%22">方括号</a>]分割出来。</p>
+<p>在链接文本的方括号后加一组圆括号来创建内联链接。 在括号内，将URL指向链接要指向的位置，以及链接的可选标题，并用引号引起来。 例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这是内联链接的的[<span class="string">例子</span>](<span class="link">http://example.com/ &quot;Title&quot;</span>)。</span><br><span class="line">这是[<span class="string">Typora</span>](<span class="link">https://www.typora.io/ &quot;官网链接&quot;</span>)官网的链接。</span><br></pre></td></tr></table></figure>
+
+<p>将会生成如下文本：</p>
+<p>这是内联链接的的<a target="_blank" rel="noopener" href="http://example.com/" title="Title">例子</a>。<br>这是<a target="_blank" rel="noopener" href="https://www.typora.io/" title="官网链接">Typora</a>官网的链接。</p>
+<h4 id="内联链接"><a href="#内联链接" class="headerlink" title="内联链接"></a>内联链接</h4><p><strong>您可以为标题设置herf</strong>将会创建一个单击后会跳转的书签，例如：</p>
+<p>按下Command键(Windows下为Ctrl键)+单机<a href="#%E5%88%86%E5%9D%97%E5%8E%9F%E7%90%86">这个链接</a>将会跳转到标题<code>分块原理</code>处。</p>
+<p>源代码如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按下Command键(Windows下为Ctrl键)+单机[<span class="string">这个链接</span>](<span class="link">#分块原理</span>)将会跳转到标题<span class="code">`分块原理`</span>处。</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考文献链接"><a href="#参考文献链接" class="headerlink" title="参考文献链接"></a>参考文献链接</h4><p>在链接文本的方括号后再加一组方括号来创建参考文献链接，后面的方括号内填入用来标识链接的文本：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这是一个[<span class="string">参考文献</span>][<span class="symbol">随便写</span>]形式的链接。</span><br><span class="line">您可在文档的任意地方定义[随便写]的内容，如下所示：</span><br><span class="line">[<span class="symbol">随便写</span>]:<span class="link">http://example.com/  &quot;Optional Title Here&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在Typora中，将被解释为如下形式：</p>
+<p>这是一个<a target="_blank" rel="noopener" href="http://example.com/" title="Optional Title Here">参考文献</a>形式的链接。<br>您可在文档的任意地方定义<a target="_blank" rel="noopener" href="http://example.com/" title="Optional Title Here">随便写</a>的内容，如下所示：</p>
+<p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下，链接文本本身用作名称。 只需使用一组空的方括号-例如，将单词“ Google”链接到google.com网站，您可以简单地编写：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">Google</span>][<span class="symbol"></span>]</span><br><span class="line">And then define the link:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">Google</span>]: <span class="link">http://google.com/</span></span><br></pre></td></tr></table></figure>
+
+<p>在Typora中，单击链接会将其展开以进行编辑，而Command +单击将在您的Web浏览器中打开超链接。</p>
+<h3 id="URLS"><a href="#URLS" class="headerlink" title="URLS"></a>URLS</h3><p>Typora允许插入&lt;尖括号&gt;包裹的URL链接。</p>
+<p><code>&lt;2437900250@qq.com&gt;</code>将会变为<a href="mailto:&#x32;&#x34;&#x33;&#55;&#x39;&#48;&#48;&#50;&#53;&#x30;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#x32;&#x34;&#x33;&#55;&#x39;&#48;&#48;&#50;&#53;&#x30;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a></p>
+<p>Typora也将自动链接标准URLs，例如：<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图片与链接由相似的语法，只需要在链接前添加感叹号<code>!</code>。插入图片的语法如下所示：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">随便写</span>](<span class="link">/文件/路径/图片名.jpg &quot;可选的图片题目&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>您可以使用拖放操作插入图像文件或使用Web浏览器插入图像。 您可以通过单击图像来修改markdown源代码。 如果通过拖放添加的图像与当前正在编辑的文档位于同一目录或子目录中，则将使用相对路径。</p>
+<p>如果您使用markdown构建网站，则可以在YAML Front Matters中使用属性“ typora-root-url”为本地计算机上的图像预览指定URL前缀。 例如，在YAML Front Matters中输入<code>typora-root-url：/ User / Abner / Website / typora.io /</code>，然后将<code>! [alt](/ blog / img / test.png)</code>视为 Typora中的<code>！[alt](file：///User/Abner/Website/typora.io/blog/img/test.png)</code>。</p>
+<p>您可以在<a target="_blank" rel="noopener" href="https://support.typora.io/Images/">此处</a>中找到更多详细信息。</p>
+<h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><p>Markdown中用星号<code>*</code>和下划线<code>_</code>标注重点，用<code>*</code>和<code>_</code>包裹的文字将展示为斜体黑体：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*用一个星号生成斜体*</span></span><br><span class="line"><span class="strong">**两个星号生成黑体**</span></span><br><span class="line"><span class="strong">**<span class="emphasis">*三个星号生成粗斜体*</span>**</span></span><br><span class="line"><span class="emphasis">_用一个下划线生成斜体_</span></span><br><span class="line"><span class="strong">__<span class="emphasis">_下划线作用与星号一样_</span>__</span></span><br></pre></td></tr></table></figure>
+
+<p>输出结果展示为：</p>
+<p><em>用一个星号生成斜体</em><br><strong>两个星号生成黑体</strong><br><em><strong>三个星号生成粗斜体</strong></em><br><em>用一个下划线生成斜体</em><br><em><strong>下划线作用与星号一样</strong></em></p>
+<p>GFM会无视一些用在代码、名称中的下划线，如下所示：</p>
+<blockquote>
+<p>wow_great_stuff</p>
+<p>kangjiayin_1123158132134_Pi</p>
+</blockquote>
+<p>所以Typora推荐使用<code>*</code>。</p>
+<p>两个<code>*</code>包含的一段话会变成强调，对于我们想输出的单纯的一个星号<code>*</code>该怎么打呢？</p>
+<p>我们在星号或者下划线前加上反斜线<code>\</code>即可在文本中添加星号与反斜线。如下所示：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*只使用两个星号围住文字会生成斜体*</span></span><br><span class="line">\<span class="emphasis">*所以斜线前会加上反斜线作为转义字符\*</span></span><br><span class="line">我们在星号下划线前加反斜线\<span class="emphasis">* \ \_即可在文本中打出星号与反斜线</span></span><br></pre></td></tr></table></figure>
+
+<p><em>只使用两个星号围住文字会生成斜体</em><br>*所以斜线前会加上反斜线作为转义字符*<br>我们在星号下划线前加反斜线* \ _即可在文本中打出星号与反斜线</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我们用两个反引号(&#96;)表明行内的代码区间。不同于预格式化的代码块，代码区间指示正常段落中的代码。 例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用<span class="code">`print()`</span>函数</span><br></pre></td></tr></table></figure>
+
+<p>将会输出为：</p>
+<p>使用<code>print()</code>函数。</p>
+<h3 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h3><p>GFM提供了删除线的语法(标准Markdown语法中没有)。</p>
+<p><code>~~删除部分~~</code>变为<del>删除文本</del>。</p>
+<h3 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h3><p>下划线由HTML提供技术支持。</p>
+<p><code>&lt;u&gt;下划线&lt;/u&gt;</code>将会变成<u>下划线</u>。</p>
+<h3 id="Emoji-smile-cat"><a href="#Emoji-smile-cat" class="headerlink" title="Emoji:smile_cat:"></a>Emoji:smile_cat:</h3><p>输入语法为​<code>:smile:</code>的表情符号。</p>
+<p>用户可以通过按“ ESC”键触发表情符号的自动完成建议，或在首选项面板上启用它后自动触发。 另外，通过进入菜单栏（macOS）中的<code>Edit</code>-&gt;<code>Emoji＆Symbols</code>，也支持直接输入UTF-8表情符号字符。</p>
+<h3 id="内联公式"><a href="#内联公式" class="headerlink" title="内联公式"></a>内联公式</h3><p>使用此功能前，需要在点击左上角<code>文件</code>-&gt;<code>偏好设置</code>-&gt;<code>Markdown</code>-&gt;<code>Markdown扩展语法</code>中勾选内联公式选项。</p>
+<p>用两个<code>$</code>包裹TeX命令，例如<code>$\lim_&#123;x \to \infty&#125; \exp(-x) = 0$</code>两个<code>$</code>中的部分将被视为LaTeX命令，展示为$\lim_{x \to \infty} \exp(-x) &#x3D; 0$。</p>
+<p>输入<code>$</code>按下<code>Esc</code>键开启内联公式预览。</p>
+<p>您可 <a target="_blank" rel="noopener" href="https://support.typora.io/Math/">在此</a>了解更多信息。</p>
+<h3 id="下标、上标与高亮"><a href="#下标、上标与高亮" class="headerlink" title="下标、上标与高亮"></a>下标、上标与高亮</h3><p>使用此功能前，需要在点击左上角<code>文件</code>-&gt;<code>偏好设置</code>-&gt;<code>Markdown</code>-&gt;<code>Markdown扩展语法</code>中勾选相应功能，例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">文本中添加下标:H~2~O 和C~2~H~5~OH 互溶</span><br><span class="line">文本中添加上标:勾股定理a^2^+b^2^=c^2^</span><br><span class="line">文本中添加高光:==量子力学==很难理解</span><br></pre></td></tr></table></figure>
+
+<p>将会输出文本：</p>
+<p>文本中添加下标:H<del>2</del>O 和C<del>2</del>H<del>5</del>OH 互溶<br>文本中添加上标:勾股定理a^2^+b^2^&#x3D;c^2^<br>文本中添加高光:&#x3D;&#x3D;量子力学&#x3D;&#x3D;很难理解</p>
+<p>若加载不出来可尝试重启Typora。</p>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>您可以使用HTML来设置纯Markdown不支持的内容的样式。 例如，使用&lt;span style &#x3D;“ color：red”&gt;此文本为红色&lt;&#x2F; span&gt;&#96;添加红色文本。</p>
+<h3 id="嵌入内容"><a href="#嵌入内容" class="headerlink" title="嵌入内容"></a>嵌入内容</h3><p>一些网站提供基于iframe的嵌入代码，您也可以将其粘贴到Typora中。 例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">&#x27;265&#x27;</span> <span class="attr">scrolling</span>=<span class="string">&#x27;no&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;Fancy Animated SVG Menu&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;http://codepen.io/jeangontijo/embed/OxVywj/?height=265&amp;theme-id=0&amp;default-tab=css,result&amp;embed-version=2&#x27;</span> <span class="attr">frameborder</span>=<span class="string">&#x27;no&#x27;</span> <span class="attr">allowtransparency</span>=<span class="string">&#x27;true&#x27;</span> <span class="attr">allowfullscreen</span>=<span class="string">&#x27;true&#x27;</span> <span class="attr">style</span>=<span class="string">&#x27;width: 100%;&#x27;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h3><p>您可以使用<video> HTML标记嵌入视频。 例如：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;xxx.mp4&quot;</span> /&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="更多的HTML选项"><a href="#更多的HTML选项" class="headerlink" title="更多的HTML选项"></a>更多的HTML选项</h3><p>您可<a href="">在此</a>了解更多信息。</p>
+<blockquote>
+<p>译者邮箱：<a href="mailto:&#x38;&#x39;&#49;&#49;&#50;&#x34;&#x30;&#57;&#50;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;">&#x38;&#x39;&#49;&#49;&#50;&#x34;&#x30;&#57;&#50;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#x6d;</a></p>
+</blockquote>
+
+  </div>
+  
+    
+        
+          <a id="newer" class="blog-nav" href="/2020/01/10/Getting-Started-with-Julia/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+        <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/leedom92/hexo-theme-leedom">Copyright © Leedom 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/leedom92/hexo-theme-leedom">Theme by Leedom | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="搜索">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='/" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="sesameman" />
+  <meta name="description" content="" />
+  
+  
+  <title>
+    
+      Getting Started with Julia 
+      
+      
+    
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet">
+
+  <!-- hexo site css -->
+  
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+
+  
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  
+<script src="/js/fancybox.js"></script>
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <a href="/">SesameMan的个人博客</a>
+</div>
+
+
+      <p class="links">
+  
+    <a title="archives" target="" href="/archives/">
+      <i class="iconfont icon-bookmark"></i>
+    </a>
+  
+    <a title="github" target="_blank" href="https://github.com/sesameman">
+      <i class="iconfont icon-github"></i>
+    </a>
+  
+    <a title="email" target="" href="kang1123581321@gmail.com">
+      <i class="iconfont icon-envelope"></i>
+    </a>
+  
+</p>
+
+
+      <div class="main">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+
+<div class="post">
+  <h3 class="date">
+    Jan 10, 2020
+  </h3>
+  <h1>
+    Getting Started with Julia
+  </h1>
+  <div class="content markdown-body">
+    <h1 id="Getting-Started-with-Julia"><a href="#Getting-Started-with-Julia" class="headerlink" title="Getting Started with Julia"></a>Getting Started with Julia</h1><h1 id="Pkg"><a href="#Pkg" class="headerlink" title="Pkg"></a>Pkg</h1><ul>
+<li>[[julia1随笔|随笔]]</li>
+<li>[[julia_plots|plots]]</li>
+<li>[[Julia_read-eval-print-loop-repl|repl]]<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1></li>
+</ul>
+<p>本文为&#x3D;&#x3D;SesameMan&#x3D;&#x3D;笔记，详细信息请参照<a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/manual/variables/">中文手册</a>、<a target="_blank" rel="noopener" href="https://julialang.org/learning/">英文教学材料</a>等。</p>
+<p>优势为：</p>
+<ul>
+<li><p>免费开源；</p>
+</li>
+<li><p>用户定义的类同内建变量一样快；</p>
+</li>
+<li><p>非向量化的语言就很快；</p>
+</li>
+<li><p>为并行计算与分布式计算设计；</p>
+</li>
+<li><p>能使用协程[^1]；</p>
+</li>
+<li><p>低调且强大的类型系统；</p>
+</li>
+<li><p>对于其中的类，有可扩展的类型转换和提升；</p>
+</li>
+<li><p>支持UTF-8；</p>
+</li>
+<li><p>直接支持C；</p>
+</li>
+<li><p>像shell一样强的管理其他进程的能力；</p>
+</li>
+<li><p>像Lisp一样的宏和其他元编程工具。</p>
+</li>
+</ul>
+<h1 id="Manual手册"><a href="#Manual手册" class="headerlink" title="Manual手册"></a>Manual手册</h1><h2 id="Install安装"><a href="#Install安装" class="headerlink" title="Install安装"></a>Install安装</h2><p><a target="_blank" rel="noopener" href="https://julialang.org/downloads/">点击此处下载</a></p>
+<h2 id="Getting-start"><a href="#Getting-start" class="headerlink" title="Getting start"></a>Getting start</h2><p>在交互式界面上(REPL)学习是上手Julia的最佳方式。</p>
+<p>For Mac user, add this code in your file <code>~/.zprofile</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=&quot;/Applications/Julia-1.6.app/Contents/Resources/julia/bin:$PATH&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这样就能在命令行直接输入<code>julia</code>打开Julia交互式界面。</p>
+<ul>
+<li>Press <code>Ctrl+d</code> or input <code>exit()</code> to exit the interactive session;</li>
+<li>To evaluate expression writen in a source file <code>myproject.jl</code> , write <code>include(&quot;file,jl&quot;)</code> ;</li>
+<li>Just like other languages , you can print <code>juila myfile.jl</code> to compile.</li>
+</ul>
+<p>Here are some useful args for Julia to provide:</p>
+<table>
+<thead>
+<tr>
+<th align="center">option</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-t {N}</td>
+<td>开启N线程</td>
+</tr>
+<tr>
+<td align="center">-h</td>
+<td>显示命令行帮助，就是显示这些参数</td>
+</tr>
+<tr>
+<td align="center">–project[&#x3D;{<dir>|@.}]</td>
+<td>设置项目工作目录</td>
+</tr>
+<tr>
+<td align="center">-q</td>
+<td>安静的启动，不显示横幅和警告</td>
+</tr>
+<tr>
+<td align="center">&#x3D;&#x3D;-o, –optimize&#x3D;{0,1,2,3}&#x3D;&#x3D;疑似不能用</td>
+<td>设置编译器优化级别</td>
+</tr>
+<tr>
+<td align="center">-g, -g <level></td>
+<td>Debug信息等级，默认为1，开2试试</td>
+</tr>
+<tr>
+<td align="center">–code-coverage&#x3D;{none|user|all}</td>
+<td>对原文件中每行代码执行次数计数</td>
+</tr>
+<tr>
+<td align="center">-e &lt;代码&gt;</td>
+<td>执行这一条代码</td>
+</tr>
+<tr>
+<td align="center">-E &lt;代码&gt;</td>
+<td>执行这一条并输出结果</td>
+</tr>
+</tbody></table>
+<h2 id="Varables变量"><a href="#Varables变量" class="headerlink" title="Varables变量"></a>Varables变量</h2><p>变量同其他程序一样，通过赋值给予：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; x=<span class="number">10</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"></span><br><span class="line">julia&gt; x+=<span class="number">41</span></span><br><span class="line"><span class="number">51</span></span><br><span class="line"></span><br><span class="line">julia&gt; x+<span class="number">8</span></span><br><span class="line"><span class="number">59</span></span><br><span class="line"></span><br><span class="line">julia&gt; x=<span class="string">&quot;try this&quot;</span></span><br><span class="line"><span class="string">&quot;try this&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; 中文也行=<span class="number">21</span></span><br><span class="line"><span class="number">21</span></span><br><span class="line"></span><br><span class="line">julia&gt; 中文也行</span><br><span class="line"><span class="number">21</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>除此之外还有一些注意事项：</p>
+<ul>
+<li>不能使用内建变量(build_in Keywords)；</li>
+<li>变量用小写；</li>
+<li>不鼓励使用下划线；</li>
+<li>类型(Type)与库(Module)的名字使用大写开头，使用驼峰式；</li>
+<li>函数(Function)和宏(Macro)的名字使用小写；</li>
+<li>会对输入参数更改的函数使用<code>!</code>结尾，因为它们在被调用后，不仅仅会返回一些值 还会更改输入参数的内容。</li>
+</ul>
+<h2 id="Integers整数-amp-Floating-Point-Numbers浮点数"><a href="#Integers整数-amp-Floating-Point-Numbers浮点数" class="headerlink" title="Integers整数 &amp; Floating-Point Numbers浮点数"></a>Integers整数 &amp; Floating-Point Numbers浮点数</h2><h3 id="Integer-types"><a href="#Integer-types" class="headerlink" title="Integer types:"></a>Integer types:</h3><p>注意，无符号整数会通过 <code>0x</code> 前缀以及十六进制数 <code>0-9a-f</code> 来输入和输出（输入也可以使用大写的 <code>A-F</code>）。无符号值的位数取决于十六进制数字使用的数量：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#16进制</span></span><br><span class="line">julia&gt; <span class="number">0x10</span></span><br><span class="line"><span class="number">0x10</span></span><br><span class="line"></span><br><span class="line">julia&gt; ans*<span class="number">10</span></span><br><span class="line"><span class="number">160</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2进制</span></span><br><span class="line">julia&gt; <span class="number">0b10</span></span><br><span class="line"><span class="number">0x02</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#最大最小</span></span><br><span class="line">julia&gt; <span class="keyword">for</span> T <span class="keyword">in</span> [<span class="built_in">Int8</span>,<span class="built_in">Int16</span>,<span class="built_in">Int32</span>,<span class="built_in">Int64</span>,<span class="built_in">Int128</span>,<span class="built_in">UInt8</span>,<span class="built_in">UInt16</span>,<span class="built_in">UInt32</span>,<span class="built_in">UInt64</span>,<span class="built_in">UInt128</span>]</span><br><span class="line">                  println(<span class="string">&quot;<span class="subst">$(lpad(T,<span class="number">7</span>)</span>): [<span class="subst">$(typemin(T)</span>),<span class="subst">$(typemax(T)</span>)]&quot;</span>)</span><br><span class="line">              <span class="keyword">end</span></span><br><span class="line">   <span class="built_in">Int8</span>: [-<span class="number">128</span>,<span class="number">127</span>]</span><br><span class="line">  <span class="built_in">Int16</span>: [-<span class="number">32768</span>,<span class="number">32767</span>]</span><br><span class="line">  <span class="built_in">Int32</span>: [-<span class="number">2147483648</span>,<span class="number">2147483647</span>]</span><br><span class="line">  <span class="built_in">Int64</span>: [-<span class="number">9223372036854775808</span>,<span class="number">9223372036854775807</span>]</span><br><span class="line"> <span class="built_in">Int128</span>: [-<span class="number">170141183460469231731687303715884105728</span>,<span class="number">170141183460469231731687303715884105727</span>]</span><br><span class="line">  <span class="built_in">UInt8</span>: [<span class="number">0</span>,<span class="number">255</span>]</span><br><span class="line"> <span class="built_in">UInt16</span>: [<span class="number">0</span>,<span class="number">65535</span>]</span><br><span class="line"> <span class="built_in">UInt32</span>: [<span class="number">0</span>,<span class="number">4294967295</span>]</span><br><span class="line"> <span class="built_in">UInt64</span>: [<span class="number">0</span>,<span class="number">18446744073709551615</span>]</span><br><span class="line"><span class="built_in">UInt128</span>: [<span class="number">0</span>,<span class="number">340282366920938463463374607431768211455</span>]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">Type</th>
+<th align="left">Signed?</th>
+<th align="left">Number of bits</th>
+<th align="left">Smallest value</th>
+<th align="left">Largest value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.Int8"><code>Int8</code></a></td>
+<td align="left">✓</td>
+<td align="left">8</td>
+<td align="left">-2^7</td>
+<td align="left">2^7 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.UInt8"><code>UInt8</code></a></td>
+<td align="left"></td>
+<td align="left">8</td>
+<td align="left">0</td>
+<td align="left">2^8 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.Int16"><code>Int16</code></a></td>
+<td align="left">✓</td>
+<td align="left">16</td>
+<td align="left">-2^15</td>
+<td align="left">2^15 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.UInt16"><code>UInt16</code></a></td>
+<td align="left"></td>
+<td align="left">16</td>
+<td align="left">0</td>
+<td align="left">2^16 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.Int32"><code>Int32</code></a></td>
+<td align="left">✓</td>
+<td align="left">32</td>
+<td align="left">-2^31</td>
+<td align="left">2^31 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.UInt32"><code>UInt32</code></a></td>
+<td align="left"></td>
+<td align="left">32</td>
+<td align="left">0</td>
+<td align="left">2^32 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.Int64"><code>Int64</code></a></td>
+<td align="left">✓</td>
+<td align="left">64</td>
+<td align="left">-2^63</td>
+<td align="left">2^63 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.UInt64"><code>UInt64</code></a></td>
+<td align="left"></td>
+<td align="left">64</td>
+<td align="left">0</td>
+<td align="left">2^64 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.Int128"><code>Int128</code></a></td>
+<td align="left">✓</td>
+<td align="left">128</td>
+<td align="left">-2^127</td>
+<td align="left">2^127 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.UInt128"><code>UInt128</code></a></td>
+<td align="left"></td>
+<td align="left">128</td>
+<td align="left">0</td>
+<td align="left">2^128 - 1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.Bool"><code>Bool</code></a></td>
+<td align="left">N&#x2F;A</td>
+<td align="left">8</td>
+<td align="left"><code>false</code> (0)</td>
+<td align="left"><code>true</code> (1)</td>
+</tr>
+</tbody></table>
+<h3 id="Floating-point-types"><a href="#Floating-point-types" class="headerlink" title="Floating-point types:"></a>Floating-point types:</h3><table>
+<thead>
+<tr>
+<th align="left">Type</th>
+<th align="left">Precision</th>
+<th align="left">Number of bits</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.Float16"><code>Float16</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Half-precision_floating-point_format">half</a></td>
+<td align="left">16</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.Float32"><code>Float32</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Single_precision_floating-point_format">single</a></td>
+<td align="left">32</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/numbers/#Core.Float64"><code>Float64</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Double_precision_floating-point_format">double</a></td>
+<td align="left">64</td>
+</tr>
+</tbody></table>
+<p>E-notation for <code>Float64</code>：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="number">2.5e-8</span></span><br><span class="line"><span class="number">2.5e-8</span></span><br><span class="line"></span><br><span class="line">julia&gt; <span class="number">2.5e-3</span></span><br><span class="line"><span class="number">0.0025</span></span><br><span class="line"></span><br><span class="line">julia&gt; <span class="number">2.5e2</span></span><br><span class="line"><span class="number">250.0</span></span><br></pre></td></tr></table></figure>
+
+<p>F-notation for <code>Float32</code> , using <code>f</code> in place of <code>e</code>:</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="number">2.5f-2</span></span><br><span class="line"><span class="number">0.025f0</span></span><br><span class="line"></span><br><span class="line">julia&gt; ans*<span class="number">1</span></span><br><span class="line"><span class="number">0.025f0</span></span><br><span class="line"></span><br><span class="line">julia&gt; ans*<span class="number">1.0</span></span><br><span class="line"><span class="number">0.02500000037252903</span></span><br><span class="line"></span><br><span class="line">julia&gt; typeof(ans)</span><br><span class="line"><span class="built_in">Float64</span></span><br></pre></td></tr></table></figure>
+
+<p>这里我们可以看出变量类型的改变。</p>
+<p>类型转换：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="number">0.25</span></span><br><span class="line"><span class="number">0.25</span></span><br><span class="line"></span><br><span class="line">julia&gt; <span class="built_in">Float32</span>(ans)</span><br><span class="line"><span class="number">0.25f0</span></span><br><span class="line"></span><br><span class="line">julia&gt; <span class="built_in">Float16</span>(ans)</span><br><span class="line"><span class="built_in">Float16</span>(<span class="number">0.25</span>)</span><br><span class="line"><span class="comment">#半精度的数字是用32位模拟的</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Overflow-behavior溢出行为"><a href="#Overflow-behavior溢出行为" class="headerlink" title="Overflow behavior溢出行为"></a>Overflow behavior溢出行为</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; x=typemax(<span class="built_in">Int32</span>)</span><br><span class="line"><span class="number">2147483647</span></span><br><span class="line"></span><br><span class="line">julia&gt; x+<span class="number">1</span></span><br><span class="line"><span class="number">2147483648</span></span><br><span class="line"></span><br><span class="line">julia&gt; x=typemax(<span class="built_in">Int64</span>)</span><br><span class="line"><span class="number">9223372036854775807</span></span><br><span class="line"></span><br><span class="line">julia&gt; x+<span class="number">1</span></span><br><span class="line">-<span class="number">9223372036854775808</span></span><br><span class="line"></span><br><span class="line">julia&gt; x+=<span class="number">1</span></span><br><span class="line">-<span class="number">9223372036854775808</span></span><br><span class="line"></span><br><span class="line">julia&gt; x==typemin(<span class="built_in">Int64</span>)</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决溢出</span></span><br><span class="line">julia&gt; big(<span class="number">10</span>)</span><br><span class="line"><span class="number">10</span></span><br><span class="line"></span><br><span class="line">julia&gt; big(<span class="number">10</span>)^<span class="number">19</span></span><br><span class="line"><span class="number">10000000000000000000</span></span><br></pre></td></tr></table></figure>
+
+<p>在可能有溢出产生的程序中，对最值边界出现循环进行显式检查是必要的。否则，推荐使用 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Base.GMP.BigInt"><code>BigInt</code></a> 类型作为替代。</p>
+<h3 id="Divison-errors除法错误"><a href="#Divison-errors除法错误" class="headerlink" title="Divison errors除法错误"></a>Divison errors除法错误</h3><p>两种错误情况：</p>
+<ul>
+<li>Divide by 0，疑似没什么事;</li>
+</ul>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; a</span><br><span class="line"><span class="number">25</span></span><br><span class="line"></span><br><span class="line">julia&gt; a/<span class="number">0</span></span><br><span class="line"><span class="literal">Inf</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>dividing the lowest negative number (<a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/base/#Base.typemin"><code>typemin</code></a>) by -1;好像也没什么事;</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; -<span class="number">1</span>/typemin(<span class="built_in">Int64</span>)</span><br><span class="line"><span class="number">1.0842021724855044e-19</span></span><br><span class="line"></span><br><span class="line">julia&gt; ans*typemin(<span class="built_in">Int64</span>)</span><br><span class="line">-<span class="number">1.0</span></span><br><span class="line"></span><br><span class="line">julia&gt; -<span class="number">1</span>/typemin(<span class="built_in">Int128</span>)</span><br><span class="line"><span class="number">5.877471754111438e-39</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>据说会报错<code>Divide error</code>。</p>
+<h3 id="Machine-epsilon机器精度"><a href="#Machine-epsilon机器精度" class="headerlink" title="Machine epsilon机器精度"></a>Machine epsilon机器精度</h3><p><code>eps</code>给出<code>1.0</code>与下一个浮点数之间的差值：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; eps(<span class="built_in">Float64</span>)</span><br><span class="line"><span class="number">2.220446049250313e-16</span></span><br></pre></td></tr></table></figure>
+
+<p><code>eps</code>给出一个和 <code>x</code> 类型相同的值使得 <code>x + eps(x)</code> 是比 <code>x</code> 更大的下一个可表示的浮点值：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; eps(<span class="number">1.0</span>)</span><br><span class="line"><span class="number">2.220446049250313e-16</span></span><br><span class="line"></span><br><span class="line">julia&gt; <span class="number">1e-27</span></span><br><span class="line"><span class="number">1.0e-27</span></span><br><span class="line"></span><br><span class="line">julia&gt; eps(ans)</span><br><span class="line"><span class="number">1.793662034335766e-43</span></span><br></pre></td></tr></table></figure>
+
+<p>Julia 也提供了 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Base.nextfloat"><code>nextfloat</code></a> 和 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Base.prevfloat"><code>prevfloat</code></a> 两个函数分别返回基于参数的下一个更大或更小的可表示的浮点数：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; x = <span class="number">1.25f0</span></span><br><span class="line"><span class="number">1.25f0</span></span><br><span class="line"></span><br><span class="line">julia&gt; nextfloat(x)</span><br><span class="line"><span class="number">1.2500001f0</span></span><br><span class="line"></span><br><span class="line">julia&gt; prevfloat(x)</span><br><span class="line"><span class="number">1.2499999f0</span></span><br><span class="line"></span><br><span class="line">julia&gt; bitstring(prevfloat(x))</span><br><span class="line"><span class="string">&quot;00111111100111111111111111111111&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; bitstring(x)</span><br><span class="line"><span class="string">&quot;00111111101000000000000000000000&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; bitstring(nextfloat(x))</span><br><span class="line"><span class="string">&quot;00111111101000000000000000000001&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Append-of-Num"><a href="#Append-of-Num" class="headerlink" title="Append of Num"></a>Append of Num</h3><h4 id="浮点中的零"><a href="#浮点中的零" class="headerlink" title="浮点中的零"></a>浮点中的零</h4><p>Useing the function of <code>bitstring</code>:</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; (bitstring(<span class="number">0.0</span>),bitstring(-<span class="number">0.0</span>))</span><br><span class="line">(<span class="string">&quot;0000000000000000000000000000000000000000000000000000000000000000&quot;</span>, <span class="string">&quot;1000000000000000000000000000000000000000000000000000000000000000&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Underscores-in-Float"><a href="#Underscores-in-Float" class="headerlink" title="Underscores in Float"></a>Underscores in Float</h4><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="number">10_000</span>, <span class="number">0.000_000_005</span>, <span class="number">0xdead_beef</span>, <span class="number">0b1011_0010</span></span><br><span class="line">(<span class="number">10000</span>, <span class="number">5.0e-9</span>, <span class="number">0xdeadbeef</span>, <span class="number">0xb2</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Special-float-point-values"><a href="#Special-float-point-values" class="headerlink" title="Special float-point values"></a>Special float-point values</h4><table>
+<thead>
+<tr>
+<th align="left"><code>Float16</code></th>
+<th align="left"><code>Float32</code></th>
+<th align="left"><code>Float64</code></th>
+<th align="left">名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>Inf16</code></td>
+<td align="left"><code>Inf32</code></td>
+<td align="left"><code>Inf</code></td>
+<td align="left">正无穷</td>
+<td align="left">一个大于所有有限浮点数的数</td>
+</tr>
+<tr>
+<td align="left"><code>-Inf16</code></td>
+<td align="left"><code>-Inf32</code></td>
+<td align="left"><code>-Inf</code></td>
+<td align="left">负无穷</td>
+<td align="left">一个小于所有有限浮点数的数</td>
+</tr>
+<tr>
+<td align="left"><code>NaN16</code></td>
+<td align="left"><code>NaN32</code></td>
+<td align="left"><code>NaN</code></td>
+<td align="left">不是数（Not a Number）</td>
+<td align="left">一个不和任何浮点值（包括自己）相等（<code>==</code>）的值</td>
+</tr>
+</tbody></table>
+<h4 id="BigInt-amp-BigFloat"><a href="#BigInt-amp-BigFloat" class="headerlink" title="BigInt&amp;BigFloat"></a><code>BigInt</code>&amp;<code>BigFloat</code></h4><p>必须声明变量：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; x=typemax(<span class="built_in">Int64</span>)</span><br><span class="line"><span class="number">9223372036854775807</span></span><br><span class="line"></span><br><span class="line">julia&gt; x+=<span class="number">1</span></span><br><span class="line">-<span class="number">9223372036854775808</span></span><br><span class="line"></span><br><span class="line">julia&gt; x=big(typemax(<span class="built_in">Int64</span>))</span><br><span class="line"><span class="number">9223372036854775807</span></span><br><span class="line"></span><br><span class="line">julia&gt; x+=<span class="number">1</span></span><br><span class="line"><span class="number">9223372036854775808</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Mathematical-Oprations-and-Elementary-Functions"><a href="#Mathematical-Oprations-and-Elementary-Functions" class="headerlink" title="Mathematical Oprations and Elementary Functions"></a>Mathematical Oprations and Elementary Functions</h2><h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><table>
+<thead>
+<tr>
+<th align="left">表达式</th>
+<th align="left">名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>+x</code></td>
+<td align="left">一元加法运算符</td>
+<td align="left">全等操作</td>
+</tr>
+<tr>
+<td align="left"><code>-x</code></td>
+<td align="left">一元减法运算符</td>
+<td align="left">将值变为其相反数</td>
+</tr>
+<tr>
+<td align="left"><code>x + y</code></td>
+<td align="left">二元加法运算符</td>
+<td align="left">执行加法</td>
+</tr>
+<tr>
+<td align="left"><code>x - y</code></td>
+<td align="left">二元减法运算符</td>
+<td align="left">执行减法</td>
+</tr>
+<tr>
+<td align="left"><code>x * y</code></td>
+<td align="left">乘法运算符</td>
+<td align="left">执行乘法</td>
+</tr>
+<tr>
+<td align="left"><code>x / y</code></td>
+<td align="left">除法运算符</td>
+<td align="left">执行除法</td>
+</tr>
+<tr>
+<td align="left"><code>x ÷ y</code></td>
+<td align="left">整除</td>
+<td align="left">取 x &#x2F; y 的整数部分</td>
+</tr>
+<tr>
+<td align="left"><code>x \ y</code></td>
+<td align="left">反向除法</td>
+<td align="left">等价于 <code>y / x</code></td>
+</tr>
+<tr>
+<td align="left"><code>x ^ y</code></td>
+<td align="left">幂操作符</td>
+<td align="left"><code>x</code> 的 <code>y</code> 次幂</td>
+</tr>
+<tr>
+<td align="left"><code>x % y</code></td>
+<td align="left">取余</td>
+<td align="left">等价于 <code>rem(x,y)</code></td>
+</tr>
+</tbody></table>
+<p>以及对 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Core.Bool"><code>Bool</code></a> 类型的否定：</p>
+<table>
+<thead>
+<tr>
+<th align="left">表达式</th>
+<th align="left">名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>!x</code></td>
+<td align="left">否定</td>
+<td align="left">将 <code>true</code> 和 <code>false</code> 互换</td>
+</tr>
+</tbody></table>
+<p>有趣的现象：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="number">0</span>*<span class="literal">Inf</span></span><br><span class="line"><span class="literal">NaN</span></span><br><span class="line"></span><br><span class="line">julia&gt; <span class="literal">false</span>*<span class="literal">Inf</span></span><br><span class="line"><span class="number">0.0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Bitwise-Operators位运算符-2"><a href="#Bitwise-Operators位运算符-2" class="headerlink" title="Bitwise Operators位运算符^2"></a>Bitwise Operators位运算符<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BD%8D%E6%93%8D%E4%BD%9C**%E4%BD%8D%E6%93%8D%E4%BD%9C**%E6%98%AF[%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1](https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)%E4%B8%AD%E5%AF%B9[%E4%BD%8D%E6%A8%A1%E5%BC%8F](https://zh.wikipedia.org/w/index.php?title=%E4%BD%8D%E6%A8%A1%E5%BC%8F&action=edit&redlink=1)%E6%88%96%5B%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%5D(https://zh.wikipedia.org/wiki/%E4%BA%8C%E9%80%B2%E4%BD%8D%E6%95%B8)%E7%9A%84%E4%B8%80%E5%85%83%E5%92%8C%E4%BA%8C%E5%85%83%E6%93%8D%E4%BD%9C%E3%80%82%E5%9C%A8%E8%AE%B8%E5%A4%9A%E5%8F%A4%E8%80%81%E7%9A%84%5B%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8%5D(https://zh.wikipedia.org/wiki/%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8)%E4%B8%8A%EF%BC%8C%E4%BD%8D%E8%BF%90%E7%AE%97%E6%AF%94%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E7%95%A5%E5%BF%AB%EF%BC%8C%E9%80%9A%E5%B8%B8%E4%BD%8D%E8%BF%90%E7%AE%97%E6%AF%94%E4%B9%98%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97%E8%A6%81%E5%BF%AB%E5%BE%88%E5%A4%9A%E3%80%82%E5%9C%A8%E7%8E%B0%E4%BB%A3%E6%9E%B6%E6%9E%84%E4%B8%AD%EF%BC%8C%E6%83%85%E5%86%B5%E5%B9%B6%E9%9D%9E%E5%A6%82%E6%AD%A4%EF%BC%9A%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E8%BF%90%E7%AE%97%E9%80%9F%E5%BA%A6%E9%80%9A%E5%B8%B8%E4%B8%8E%E5%8A%A0%E6%B3%95%E8%BF%90%E7%AE%97%E7%9B%B8%E5%90%8C%EF%BC%88%E4%BB%8D%E7%84%B6%E5%BF%AB%E4%BA%8E%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97%EF%BC%89%E3%80%82">^2</a></h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>实例</th>
+<th>怎么写</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>按位取反Not</td>
+<td>0111$\to$1000</td>
+<td>~x</td>
+</tr>
+<tr>
+<td>按位或Or</td>
+<td></td>
+<td>x | y</td>
+</tr>
+<tr>
+<td>按位异或XOR</td>
+<td></td>
+<td>x $\veebar$ y</td>
+</tr>
+<tr>
+<td>按位与AND</td>
+<td></td>
+<td>x &amp; y</td>
+</tr>
+<tr>
+<td>Arithmetic shift right</td>
+<td></td>
+<td>x &gt;&gt; y</td>
+</tr>
+<tr>
+<td>logical shift right</td>
+<td></td>
+<td>x &gt;&gt;&gt; y</td>
+</tr>
+<tr>
+<td>logical shift left</td>
+<td></td>
+<td>x &lt;&lt; y</td>
+</tr>
+</tbody></table>
+<h3 id="Updating-Operators复合赋值操作"><a href="#Updating-Operators复合赋值操作" class="headerlink" title="Updating Operators复合赋值操作"></a>Updating Operators复合赋值操作</h3><p><code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>\=</code> <code>$\div$=</code> <code>&amp;=</code> <code>|=</code> <code>$\veebar$=</code> <code>&gt;&gt;&gt;=</code> <code>&gt;&gt;=</code> <code>&lt;&lt;=</code> </p>
+<h3 id="x3D-x3D-Vectorized-“dot”-operators向量乘法运算-x3D-x3D"><a href="#x3D-x3D-Vectorized-“dot”-operators向量乘法运算-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;Vectorized “dot” operators向量乘法运算&#x3D;&#x3D;"></a>&#x3D;&#x3D;Vectorized “dot” operators向量乘法运算&#x3D;&#x3D;</h3><p>Julia 中，<strong>每个</strong>二元运算符都有一个 <code>dot</code> 运算符与之对应，例如 <code>^</code> 就有对应的 <code>.^</code> 存在。这个对应的 <code>.^</code> 被 Julia <strong>自动地</strong>定义为逐元素地执行 <code>^</code> 运算。比如 <code>[1,2,3] ^ 3</code> 是非法的，因为数学上没有给（长宽不一样的）数组的立方下过定义。但是 <code>[1,2,3] .^ 3</code> 在 Julia 里是合法的，它会逐元素地执行 <code>^</code> 运算（或称向量化运算），得到 <code>[1^3, 2^3, 3^3]</code>。类似地，<code>!</code> 或 <code>√</code> 这样的一元运算符，也都有一个对应的 <code>.√</code> 用于执行逐元素运算。</p>
+<figure class="highlight julia-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">julia&gt;</span><span class="language-julia"> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] .^ <span class="number">3</span></span></span><br><span class="line"><span class="language-julia"></span>3-element Array&#123;Int64,1&#125;:</span><br><span class="line">  1</span><br><span class="line">  8</span><br><span class="line"> 27</span><br></pre></td></tr></table></figure>
+
+<p>具体来说，<code>a .^ b</code> 被解析为 <code>dot</code> 调用 <code>(^).(a,b)</code>，这会执行 broadcast操作：该操作能结合数组和标量、相同大小的数组（元素之间的运算）、甚至不同形状的数组（例如行、列向量结合生成矩阵）。更进一步，就像所有向量化的 <code>dot</code> 调用一样，这些 <code>dot</code> 运算符是<strong>融合</strong>的（fused）。例如，在计算表达式 <code>2 .* A.^2 .+ sin.(A)</code> 时，Julia 只对 <code>A</code> 进行做<strong>一次</strong>循环，遍历 <code>A</code> 中的每个元素 a 并计算 <code>2a^2 + sin(a)</code>。上述表达式也可以用<code>@.</code>宏简写为 <code>@. 2A^2 + sin(A)</code>。特别的，类似 <code>f.(g.(x))</code> 的嵌套 <code>dot</code> 调用也是<strong>融合</strong>的，并且“相邻的”二元运算符表达式 <code>x .+ 3 .* x.^2</code> 可以等价转换为嵌套 <code>dot</code> 调用：<code>(+).(x, (*).(3, (^).(x, 2)))</code>。</p>
+<p>除了 <code>dot</code> 运算符，我们还有 <code>dot</code> 复合赋值运算符，类似 <code>a .+= b</code>（或者 <code>@. a += b</code>）会被解析成 <code>a .= a .+ b</code>，这里的 <code>.=</code> 是一个<strong>融合</strong>的 in-place 运算。</p>
+<p>这个点语法，也能用在用户自定义的运算符上。例如，通过定义 <code>⊗(A,B) = kron(A,B)</code> 可以为 Kronecker 积（<a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/stdlib/LinearAlgebra/#Base.kron"><code>kron</code></a>）提供一个方便的中缀语法 <code>A ⊗ B</code>，那么配合点语法 <code>[A,B] .⊗ [C,D]</code> 就等价于 <code>[A⊗C, B⊗D]</code>。</p>
+<p>将点运算符用于数值字面量可能会导致歧义。例如，<code>1.+x</code> 到底是表示 <code>1. + x</code> 还是 <code>1 .+ x</code>？这会令人疑惑。因此不允许使用这种语法，遇到这种情况时，必须明确地用空格消除歧义。</p>
+<h3 id="Numeric-Comparisons数值比较"><a href="#Numeric-Comparisons数值比较" class="headerlink" title="Numeric Comparisons数值比较"></a>Numeric Comparisons数值比较</h3><p>Standard comparison operations are defined for all the primitive numeric types:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Operator</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/math/#Base.:=="><code>==</code></a></td>
+<td align="left">equality</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/math/#Base.:!="><code>!=</code></a>, <a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/math/#Base.:!="><code>≠</code></a></td>
+<td align="left">inequality</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/math/#Base.:%3C"><code>&lt;</code></a></td>
+<td align="left">less than</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/math/#Base.:%3C="><code>&lt;=</code></a>, <a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/math/#Base.:%3C="><code>≤</code></a></td>
+<td align="left">less than or equal to</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/math/#Base.:%3E"><code>&gt;</code></a></td>
+<td align="left">greater than</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/math/#Base.:%3E="><code>&gt;=</code></a>, <a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/base/math/#Base.:%3E="><code>≥</code></a></td>
+<td align="left">greater than or equal to</td>
+</tr>
+</tbody></table>
+<p>为此，Julia 给这些特别的数提供了下面几个额外的测试函数。这些函数在某些情况下很有用处，比如在做 hash 比较时。</p>
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">测试是否满足如下性质</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/base/#Base.isequal"><code>isequal(x, y)</code></a></td>
+<td align="left"><code>x</code> 与 <code>y</code> 是完全相同的</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Base.isfinite"><code>isfinite(x)</code></a></td>
+<td align="left"><code>x</code> 是有限大的数字</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Base.isinf"><code>isinf(x)</code></a></td>
+<td align="left"><code>x</code> 是（正&#x2F;负）无穷大</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Base.isnan"><code>isnan(x)</code></a></td>
+<td align="left"><code>x</code> 是 <code>NaN</code></td>
+</tr>
+</tbody></table>
+<p>支持链式比较。</p>
+<h3 id="x3D-x3D-Elementary-Functions初等函数-x3D-x3D"><a href="#x3D-x3D-Elementary-Functions初等函数-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;Elementary Functions初等函数&#x3D;&#x3D;"></a>&#x3D;&#x3D;Elementary Functions初等函数&#x3D;&#x3D;</h3><p>可向量化，例如：函数也能通过 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/manual/functions/#man-vectorized">点语法</a> <code>f.(A)</code> 以“向量化”的方式作用于数组和其它集合上。 比如，<code>sin.(A)</code> 会计算 <code>A</code> 中每个元素的 sin 值。</p>
+<h3 id="运算优先级"><a href="#运算优先级" class="headerlink" title="运算优先级"></a>运算优先级</h3><h3 id="Numerical-Conversions数字转换"><a href="#Numerical-Conversions数字转换" class="headerlink" title="Numerical Conversions数字转换"></a>Numerical Conversions数字转换</h3><p>Julia支持三种数值转换，他们在处理不精确转换上有所不同。</p>
+<ul>
+<li><p><code>T(x)</code> and <code>convert(T,x)</code> will converts <code>x</code> to a value of type <code>T</code>.</p>
+</li>
+<li><p><code>x % T</code> converts an integer <code>x</code> to a value of integer type <code>T</code> congruent to <code>x</code> modulo <code>2^n</code>, where <code>n</code> is the number of bits in <code>T</code>. In other words, the binary representation is truncated to fit.(注：相当于，分别取转化为二进制取模)</p>
+</li>
+<li><p>The Rounding functions take a type <code>T</code> as an optional argument. For example, <code>round(Int,x)</code> is a shorthand for <code>Int(round(x))</code>.</p>
+</li>
+</ul>
+<h3 id="Rounding-functions舍入函数"><a href="#Rounding-functions舍入函数" class="headerlink" title="Rounding functions舍入函数"></a>Rounding functions舍入函数</h3><table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+<th align="left">返回类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.round-Tuple{Type,Any}"><code>round(x)</code></a></td>
+<td align="left"><code>x</code> 舍到最接近的整数</td>
+<td align="left"><code>typeof(x)</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.round-Tuple{Type,Any}"><code>round(T, x)</code></a></td>
+<td align="left"><code>x</code> 舍到最接近的整数</td>
+<td align="left"><code>T</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.floor"><code>floor(x)</code></a></td>
+<td align="left"><code>x</code> 向 <code>-Inf</code> 方向舍入</td>
+<td align="left"><code>typeof(x)</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.floor"><code>floor(T, x)</code></a></td>
+<td align="left"><code>x</code> 向 <code>-Inf</code> 方向舍入</td>
+<td align="left"><code>T</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.ceil"><code>ceil(x)</code></a></td>
+<td align="left"><code>x</code> 向 <code>+Inf</code> 方向取整</td>
+<td align="left"><code>typeof(x)</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.ceil"><code>ceil(T, x)</code></a></td>
+<td align="left"><code>x</code> 向 <code>+Inf</code> 方向取整</td>
+<td align="left"><code>T</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.trunc"><code>trunc(x)</code></a></td>
+<td align="left"><code>x</code> 向 0 取整</td>
+<td align="left"><code>typeof(x)</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.trunc"><code>trunc(T, x)</code></a></td>
+<td align="left"><code>x</code> 向 0 取整</td>
+<td align="left"><code>T</code></td>
+</tr>
+</tbody></table>
+<h3 id="Division-functuons除法函数"><a href="#Division-functuons除法函数" class="headerlink" title="Division functuons除法函数"></a>Division functuons除法函数</h3><table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.div"><code>div(x,y)</code></a>, <code>x÷y</code></td>
+<td align="left">截断除法；商向零近似</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.fld"><code>fld(x,y)</code></a></td>
+<td align="left">向下取整除法；商向 <code>-Inf</code> 近似</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.cld"><code>cld(x,y)</code></a></td>
+<td align="left">向上取整除法；商向 <code>+Inf</code> 近似</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.rem"><code>rem(x,y)</code></a></td>
+<td align="left">取余；满足 <code>x == div(x,y)*y + rem(x,y)</code>；符号与 <code>x</code> 一致</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.mod"><code>mod(x,y)</code></a></td>
+<td align="left">取模；满足 <code>x == fld(x,y)*y + mod(x,y)</code>；符号与 <code>y</code> 一致</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.mod1"><code>mod1(x,y)</code></a></td>
+<td align="left">偏移 1 的 <code>mod</code>；若 <code>y&gt;0</code>，则返回 <code>r∈(0,y]</code>，若 <code>y&lt;0</code>，则 <code>r∈[y,0)</code> 且满足 <code>mod(r, y) == mod(x, y)</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.Math.mod2pi"><code>mod2pi(x)</code></a></td>
+<td align="left">以 2pi 为基取模；<code>0 &lt;= mod2pi(x) &lt; 2pi</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.divrem"><code>divrem(x,y)</code></a></td>
+<td align="left">返回 <code>(div(x,y),rem(x,y))</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.fldmod"><code>fldmod(x,y)</code></a></td>
+<td align="left">返回 <code>(fld(x,y),mod(x,y))</code></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.gcd"><code>gcd(x,y...)</code></a></td>
+<td align="left"><code>x</code>, <code>y</code>,… 的最大公约数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.lcm"><code>lcm(x,y...)</code></a></td>
+<td align="left"><code>x</code>, <code>y</code>,… 的最小公倍数</td>
+</tr>
+</tbody></table>
+<h3 id="Sign-and-absolute-value-functions符号和绝对值"><a href="#Sign-and-absolute-value-functions符号和绝对值" class="headerlink" title="Sign and absolute value functions符号和绝对值"></a>Sign and absolute value functions符号和绝对值</h3><table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.abs"><code>abs(x)</code></a></td>
+<td align="left"><code>x</code> 的模</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.abs2"><code>abs2(x)</code></a></td>
+<td align="left"><code>x</code> 的模的平方</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.sign"><code>sign(x)</code></a></td>
+<td align="left">表示 <code>x</code> 的符号，返回 -1，0， +1</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.signbit"><code>signbit(x)</code></a></td>
+<td align="left">表示符号位是 true 或 false</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.copysign"><code>copysign(x,y)</code></a></td>
+<td align="left">返回一个数，其值等于 <code>x</code> 的模，符号与 <code>y</code> 一致</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.flipsign"><code>flipsign(x,y)</code></a></td>
+<td align="left">返回一个数，其值等于 <code>x</code> 的模，符号与 <code>x*y</code> 一致</td>
+</tr>
+</tbody></table>
+<h3 id="Power-logs-and-roots幂、对数和根号"><a href="#Power-logs-and-roots幂、对数和根号" class="headerlink" title="Power, logs and roots幂、对数和根号"></a>Power, logs and roots幂、对数和根号</h3><table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.sqrt-Tuple{Real}"><code>sqrt(x)</code></a>, <code>√x</code></td>
+<td align="left"><code>x</code> 的平方根</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.Math.cbrt"><code>cbrt(x)</code></a>, <code>∛x</code></td>
+<td align="left"><code>x</code> 的立方根</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.Math.hypot"><code>hypot(x,y)</code></a><a target="_blank" rel="noopener" href="https://www.johndcook.com/blog/2010/06/02/whats-so-hard-about-finding-a-hypotenuse/">^hypot</a></td>
+<td align="left">当直角边的长度为 <code>x</code> 和 <code>y</code>时，直角三角形斜边的长度</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.exp-Tuple{Float64}"><code>exp(x)</code></a></td>
+<td align="left">自然指数函数在 <code>x</code> 处的值</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.expm1"><code>expm1(x)</code></a><a target="_blank" rel="noopener" href="https://www.johndcook.com/blog/2010/06/07/math-library-functions-that-seem-unnecessary/">^expm1</a></td>
+<td align="left">当 <code>x</code> 接近 0 时的 <code>exp(x)-1</code> 的精确值</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.Math.ldexp"><code>ldexp(x,n)</code></a></td>
+<td align="left"><code>x*2^n</code> 的高效算法，<code>n</code> 为整数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.log-Tuple{Number}"><code>log(x)</code></a></td>
+<td align="left"><code>x</code> 的自然对数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.log-Tuple{Number}"><code>log(b,x)</code></a></td>
+<td align="left">以 <code>b</code> 为底 <code>x</code> 的对数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.log2"><code>log2(x)</code></a></td>
+<td align="left">以 2 为底 <code>x</code> 的对数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.log10"><code>log10(x)</code></a></td>
+<td align="left">以 10 为底 <code>x</code> 的对数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.log1p"><code>log1p(x)</code></a><a target="_blank" rel="noopener" href="https://www.johndcook.com/blog/2010/06/07/math-library-functions-that-seem-unnecessary/">^expm1</a></td>
+<td align="left">当 <code>x</code>接近 0 时的 <code>log(1+x)</code> 的精确值</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Base.Math.exponent"><code>exponent(x)</code></a></td>
+<td align="left"><code>x</code> 的二进制指数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Base.Math.significand"><code>significand(x)</code></a></td>
+<td align="left">浮点数 <code>x</code> 的二进制有效数（也就是尾数）</td>
+</tr>
+</tbody></table>
+<h3 id="Trigonometric-and-hyperbolic-functions-x3D-x3D-三角函数-x3D-x3D-和双曲函数"><a href="#Trigonometric-and-hyperbolic-functions-x3D-x3D-三角函数-x3D-x3D-和双曲函数" class="headerlink" title="Trigonometric and hyperbolic functions&#x3D;&#x3D;三角函数&#x3D;&#x3D;和双曲函数"></a>Trigonometric and hyperbolic functions&#x3D;&#x3D;三角函数&#x3D;&#x3D;和双曲函数</h3><p>所有标准的三角函数和双曲函数也都已经定义了：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sin    cos    tan    cot    sec    csc</span><br><span class="line">sinh   cosh   tanh   coth   sech   csch</span><br><span class="line">asin   acos   atan   acot   asec   acsc</span><br><span class="line">asinh  acosh  atanh  acoth  asech  acsch</span><br><span class="line">sinc   cosc</span><br></pre></td></tr></table></figure>
+
+<p>所有这些函数都是单参数函数，不过 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.atan-Tuple{Number}"><code>atan</code></a> 也可以接收两个参数 来表示传统的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Atan2"><code>atan2</code></a> 函数。</p>
+<p>另外，<a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.Math.sinpi"><code>sinpi(x)</code></a> 和 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.Math.cospi"><code>cospi(x)</code></a> 分别用来对 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.sin-Tuple{Number}"><code>sin(pi*x)</code></a> 和 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.cos-Tuple{Number}"><code>cos(pi*x)</code></a> 进行更精确的计算。</p>
+<p>要计算角度而非弧度的三角函数，以 <code>d</code> 做后缀。 比如，<a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.Math.sind"><code>sind(x)</code></a> 计算 <code>x</code> 的 sine 值，其中 <code>x</code> 是一个角度值。 下面是角度变量的三角函数完整列表：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sind   cosd   tand   cotd   secd   cscd</span><br><span class="line">asind  acosd  atand  acotd  asecd  acscd</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="特殊函数"><a href="#特殊函数" class="headerlink" title="特殊函数"></a>特殊函数</h3><p>SpecialFunctions.jl see in github.</p>
+<h2 id="Complex-and-Rational-Numbers复数和有理数"><a href="#Complex-and-Rational-Numbers复数和有理数" class="headerlink" title="Complex and Rational Numbers复数和有理数"></a>Complex and Rational Numbers复数和有理数</h2><p>支持上一节中的所有函数。</p>
+<h3 id="Complex-Numbers复数"><a href="#Complex-Numbers复数" class="headerlink" title="Complex Numbers复数"></a>Complex Numbers复数</h3><p>全局变量<code>im</code>表示复数<code>i</code>。</p>
+<table>
+<thead>
+<tr>
+<th>标准函数名称</th>
+<th>写法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>取实部</td>
+<td>real( )</td>
+</tr>
+<tr>
+<td>取虚部</td>
+<td>Imag( )</td>
+</tr>
+<tr>
+<td>取复共轭</td>
+<td>Conj()</td>
+</tr>
+<tr>
+<td>取绝对值</td>
+<td>Abs( )</td>
+</tr>
+<tr>
+<td>取绝对值后平方</td>
+<td>Abs2()</td>
+</tr>
+<tr>
+<td>相角(弧度单位制)</td>
+<td>Angle( )</td>
+</tr>
+</tbody></table>
+<p>构建一个复数：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; a=<span class="number">10</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"></span><br><span class="line">julia&gt; b=<span class="number">20</span></span><br><span class="line"><span class="number">20</span></span><br><span class="line"></span><br><span class="line">julia&gt; complex(a,b)</span><br><span class="line"><span class="number">10</span> + <span class="number">20</span><span class="literal">im</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Real-numbers有理数"><a href="#Real-numbers有理数" class="headerlink" title="Real numbers有理数"></a>Real numbers有理数</h3><ul>
+<li>Julia支持一种使用<code>//</code>的分数表示法，eg：<code>2//3</code>；</li>
+</ul>
+<p>整数比值的这种标准化形式是唯一的，所以分数值的相等性可由校验分子与分母都相等来测试。分数值的标准化分子和分母可以使用 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.numerator"><code>numerator</code></a> 和 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/math/#Base.denominator"><code>denominator</code></a> 函数得到：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; numerator(<span class="number">2</span>//<span class="number">3</span>)</span><br><span class="line"><span class="number">2</span></span><br><span class="line"></span><br><span class="line">julia&gt; denominator(<span class="number">2</span>//<span class="number">3</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>支持无穷分数构建：</li>
+</ul>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="number">99</span>//<span class="number">0</span></span><br><span class="line"><span class="number">1</span>//<span class="number">0</span></span><br><span class="line"></span><br><span class="line">julia&gt; -<span class="number">1</span>//<span class="number">0</span></span><br><span class="line">-<span class="number">1</span>//<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Strings字符串"><a href="#Strings字符串" class="headerlink" title="Strings字符串"></a>Strings字符串</h2><p>高级特性：</p>
+<ul>
+<li>补充知识，ASCII文本。</li>
+<li>剩下的都不懂。</li>
+</ul>
+<h3 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h3><p>看不懂</p>
+<blockquote>
+<p><code>Char</code> 类型的值代表单个字符：它只是带有特殊文本表示法和适当算术行为的 32 位原始类型，不能转化为代表 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Code_point">Unicode 代码</a> 的数值。（Julia 的包可能会定义别的 <code>AbstractChar</code> 子类型，比如当为了优化对其它 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Character_encoding">字符编码</a> 的操作时）<code>Char</code> 类型的值以这样的方式输入和显示：</p>
+<figure class="highlight julia-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;julia&gt; &#x27;x&#x27;</span><br><span class="line">&gt;&#x27;x&#x27;: ASCII/Unicode U+0078 (category Ll: Letter, lowercase)</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; typeof(ans)</span><br><span class="line">&gt;Char</span><br></pre></td></tr></table></figure>
+
+<p>你可以轻松地将 <code>Char</code> 转换为其对应的整数值，即 Unicode 代码：</p>
+<figure class="highlight julia-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;julia&gt; Int(&#x27;x&#x27;)</span><br><span class="line">&gt;120</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; typeof(ans)</span><br><span class="line">&gt;Int64</span><br></pre></td></tr></table></figure>
+
+<p>在 32 位架构中，<a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/base/#Core.typeof"><code>typeof(ans)</code></a> 将显示为 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/numbers/#Core.Int32"><code>Int32</code></a>。你可以轻松地将一个整数值转回 <code>Char</code>。</p>
+<figure class="highlight julia-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;julia&gt; Char(120)</span><br><span class="line">&gt;&#x27;x&#x27;: ASCII/Unicode U+0078 (category Ll: Letter, lowercase)</span><br></pre></td></tr></table></figure>
+
+<p>并非所有的整数值都是有效的 Unicode 代码，但是为了性能，<code>Char</code> 的转化不会检查每个值是否有效。如果你想检查每个转换的值是否为有效值，请使用 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/strings/#Base.isvalid-Tuple{Any}"><code>isvalid</code></a> 函数：</p>
+<figure class="highlight julia-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;julia&gt; Char(0x110000)</span><br><span class="line">&gt;&#x27;\U110000&#x27;: Unicode U+110000 (category In: Invalid, too high)</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; isvalid(Char, 0x110000)</span><br><span class="line">&gt;false</span><br></pre></td></tr></table></figure>
+
+<p>目前，有效的 Unicode 码点为，从 <code>U+0000</code> 至 <code>U+D7FF</code>，以及从 <code>U+E000</code> 至 <code>U+10FFFF</code>。 它们还未全部被赋予明确的含义，也还没必要能被程序识别；然而，所有的这些值都被认为是有效的 Unicode 字符。</p>
+<p>你可以在单引号中输入任何 Unicode 字符，通过使用 <code>\u</code> 加上至多 ４ 个十六进制数字或者 <code>\U</code> 加上至多 ８ 个十六进制数（最长的有效值也只需要 6 个）：</p>
+<figure class="highlight julia-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;julia&gt; &#x27;\u0&#x27;</span><br><span class="line">&gt;&#x27;\0&#x27;: ASCII/Unicode U+0000 (category Cc: Other, control)</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; &#x27;\u78&#x27;</span><br><span class="line">&gt;&#x27;x&#x27;: ASCII/Unicode U+0078 (category Ll: Letter, lowercase)</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; &#x27;\u2200&#x27;</span><br><span class="line">&gt;&#x27;∀&#x27;: Unicode U+2200 (category Sm: Symbol, math)</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; &#x27;\U10ffff&#x27;</span><br><span class="line">&gt;&#x27;\U10ffff&#x27;: Unicode U+10FFFF (category Cn: Other, not assigned)</span><br></pre></td></tr></table></figure>
+
+<p>Julia 使用系统默认的区域和语言设置来确定，哪些字符可以被正确显示，哪些需要用 <code>\u</code> 或 <code>\U</code> 的转义来显示。除 Unicode 转义格式之外，还可以使用所有的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/C_syntax#Backslash_escapes">传统 C 语言转义输入形式</a>：</p>
+<figure class="highlight julia-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;julia&gt; Int(&#x27;\0&#x27;)</span><br><span class="line">&gt;0</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; Int(&#x27;\t&#x27;)</span><br><span class="line">&gt;9</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; Int(&#x27;\n&#x27;)</span><br><span class="line">&gt;10</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; Int(&#x27;\e&#x27;)</span><br><span class="line">&gt;27</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; Int(&#x27;\x7f&#x27;)</span><br><span class="line">&gt;127</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; Int(&#x27;\177&#x27;)</span><br><span class="line">&gt;127</span><br></pre></td></tr></table></figure>
+
+<p>你可以对 <code>Char</code> 的值进行比较和有限的算术运算：</p>
+<figure class="highlight julia-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;julia&gt; &#x27;A&#x27; &lt; &#x27;a&#x27;</span><br><span class="line">&gt;true</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; &#x27;A&#x27; &lt;= &#x27;a&#x27; &lt;= &#x27;Z&#x27;</span><br><span class="line">&gt;false</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; &#x27;A&#x27; &lt;= &#x27;X&#x27; &lt;= &#x27;Z&#x27;</span><br><span class="line">&gt;true</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; &#x27;x&#x27; - &#x27;a&#x27;</span><br><span class="line">&gt;23</span><br><span class="line"></span><br><span class="line">&gt;julia&gt; &#x27;A&#x27; + 1</span><br><span class="line">&gt;&#x27;B&#x27;: ASCII/Unicode U+0042 (category Lu: Letter, uppercase)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="String-Basics字符串基础"><a href="#String-Basics字符串基础" class="headerlink" title="String Basics字符串基础"></a>String Basics字符串基础</h3><p>字符串的文字部分由双引号或3*双引号(包括双引号的字符串)分割；</p>
+<p>在字符串中索引文字：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; mystr=<span class="string">&quot;kangjj好帅啊,his qq is 891124092&quot;</span></span><br><span class="line"><span class="string">&quot;kangjj好帅啊,his qq is 891124092&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; mystr[<span class="number">4</span>]</span><br><span class="line"><span class="string">&#x27;嘉&#x27;</span>: Unicode U+<span class="number">5609</span> (category Lo: Letter, other)</span><br><span class="line"></span><br><span class="line">julia&gt; mystr[<span class="number">21</span>]</span><br><span class="line"><span class="string">&#x27;i&#x27;</span>: ASCII/Unicode U+<span class="number">0069</span> (category Ll: Letter, lowercase)</span><br><span class="line"></span><br><span class="line">julia&gt; mystr[<span class="keyword">begin</span>]</span><br><span class="line">&#x27;kang&#x27;: Unicode U+<span class="number">5</span>EB7 (category Lo: Letter, other)</span><br><span class="line"></span><br><span class="line">julia&gt; mystr[<span class="keyword">end</span>]</span><br><span class="line"><span class="string">&#x27;2&#x27;</span>: ASCII/Unicode U+<span class="number">0032</span> (category Nd: <span class="built_in">Number</span>, decimal digit)</span><br></pre></td></tr></table></figure>
+
+<p>范围索引：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; mystr[<span class="number">4</span>:<span class="number">25</span>]</span><br><span class="line"><span class="string">&quot;jj好帅啊,his qq&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意到 <code>str[k]</code> 和 <code>str[k:k]</code> 输出的结果不一样：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; (mystr[<span class="number">1</span>],mystr[<span class="number">1</span>:<span class="number">1</span>])</span><br><span class="line">(&#x27;kang&#x27;, <span class="string">&quot;kang&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>前者是 <code>Char</code> 类型的单个字符值，后者是碰巧只有单个字符的字符串值。在 Julia 里面两者大不相同。</p>
+<p>范围索引复制了原字符串的选定部分。此外，也可以用 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/strings/#Base.SubString"><code>SubString</code></a> 类型创建字符串的 <code>view</code>，例如：</p>
+<figure class="highlight julia-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">julia&gt;</span><span class="language-julia"> str = <span class="string">&quot;long string&quot;</span></span></span><br><span class="line"><span class="language-julia"></span>&quot;long string&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta prompt_">julia&gt;</span><span class="language-julia"> substr = <span class="built_in">SubString</span>(str, <span class="number">1</span>, <span class="number">4</span>)</span></span><br><span class="line"><span class="language-julia"></span>&quot;long&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta prompt_">julia&gt;</span><span class="language-julia"> typeof(substr)</span></span><br><span class="line"><span class="language-julia"></span>SubString&#123;String&#125;</span><br></pre></td></tr></table></figure>
+
+<p>几个标准函数，像 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/strings/#Base.chop"><code>chop</code></a>, <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/strings/#Base.chomp"><code>chomp</code></a> 或者 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/strings/#Base.strip"><code>strip</code></a> 都会返回一个 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/strings/#Base.SubString"><code>SubString</code></a>。</p>
+<h3 id="Unicode-amp-UTF-8"><a href="#Unicode-amp-UTF-8" class="headerlink" title="Unicode &amp; UTF-8"></a>Unicode &amp; UTF-8</h3><h3 id="Concatenation拼接"><a href="#Concatenation拼接" class="headerlink" title="Concatenation拼接"></a>Concatenation拼接</h3><p>如代码所示：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; who=<span class="string">&quot;sesame man &quot;</span></span><br><span class="line"><span class="string">&quot;sesame man &quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; what=<span class="string">&quot;handsome.&quot;</span></span><br><span class="line"><span class="string">&quot;handsome.&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; hhh=string(who,<span class="string">&quot;is &quot;</span>,what)</span><br><span class="line"><span class="string">&quot;sesame man is handsome.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>使<code>*</code>串联级：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; who*<span class="string">&quot;is &quot;</span>*what</span><br><span class="line"><span class="string">&quot;sesame man is handsome.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>尽管对于提供 <code>+</code> 函数用于字符串拼接的语言使用者而言，<code>*</code> 似乎是一个令人惊讶的选择，但 <code>*</code> 的这种用法在数学中早有先例，尤其是在抽象代数中。</p>
+<p>在数学上，<code>+</code> 通常表示可交换运算（<em>commutative</em> operation）——运算对象的顺序不重要。一个例子是矩阵加法：对于任何形状相同的矩阵 <code>A</code> 和 <code>B</code>，都有 <code>A + B == B + A</code>。与之相反，<code>*</code> 通常表示不可交换运算——运算对象的顺序很重要。例如，对于矩阵乘法，一般 <code>A * B != B * A</code>。同矩阵乘法类似，字符串拼接是不可交换的：<code>greet * whom != whom * greet</code>。在这一点上，对于插入字符串的拼接操作，<code>*</code> 是一个自然而然的选择，与它在数学中的用法一致。</p>
+<p>更确切地说，有限长度字符串集合 <em>S</em> 和字符串拼接操作 <code>*</code> 构成了一个<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Free_monoid">自由幺半群</a> (<em>S</em>, <code>*</code>)。该集合的单位元是空字符串，<code>&quot;&quot;</code>。当一个自由幺半群不是交换的时，它的运算通常表示为 <code>\cdot</code>，<code>*</code>，或者类似的符号，而非暗示交换性的 <code>+</code>。</p>
+<h3 id="Interpolation插入"><a href="#Interpolation插入" class="headerlink" title="Interpolation插入"></a>Interpolation插入</h3><p>有点像shell全局变量，前边加<code>$</code>即可插入字符串：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="string">&quot;<span class="variable">$who</span> can win the game.&quot;</span></span><br><span class="line"><span class="string">&quot;sesame man  can win the game.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>可插入表达式：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="string">&quot;<span class="variable">$who</span> can win the game <span class="subst">$(<span class="number">2</span>*<span class="number">50</span>*<span class="number">1</span>)</span> times.&quot;</span></span><br><span class="line"><span class="string">&quot;sesame man  can win the game 100 times.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于一些<code>抽象字符串</code>而言，可返回字符表达形式:</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; kang=[<span class="string">&quot;169 cm&quot;</span>,<span class="string">&quot;23&quot;</span>,<span class="string">&quot;imu&quot;</span>,<span class="string">&quot;nku&quot;</span>]</span><br><span class="line"><span class="number">4</span>-element <span class="built_in">Vector</span>&#123;<span class="built_in">String</span>&#125;:</span><br><span class="line"> <span class="string">&quot;169 cm&quot;</span></span><br><span class="line"> <span class="string">&quot;23&quot;</span></span><br><span class="line"> <span class="string">&quot;imu&quot;</span></span><br><span class="line"> <span class="string">&quot;nku&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; <span class="string">&quot;kang:<span class="variable">$kang</span>&quot;</span></span><br><span class="line"><span class="string">&quot;kang:[\&quot;169 cm\&quot;, \&quot;23\&quot;, \&quot;imu\&quot;, \&quot;nku\&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Triple-Queoted-String-Literals三引号字符串"><a href="#Triple-Queoted-String-Literals三引号字符串" class="headerlink" title="Triple-Queoted String Literals三引号字符串"></a>Triple-Queoted String Literals三引号字符串</h3><ul>
+<li>不仅仅能在句子中添加引号，更有层次关系；</li>
+<li>会有强力的缩进；</li>
+<li>反缩进dedentation；</li>
+<li>无论是用单引号还是三引号，在文本字符串中换行符都会生成一个换行 (LF) 字符 <code>\n</code>，即使你的编辑器使用回车组合符 <code>\r</code> (CR) 或 CRLF 来结束行。为了在字符串中包含 CR，总是应该使用显式转义符 <code>\r</code>；比如，可以输入文本字符串 <code>&quot;a CRLF line ending\r\n&quot;</code>。</li>
+</ul>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; ying=<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">       kang</span></span><br><span class="line"><span class="string">       jiayin </span></span><br><span class="line"><span class="string">       good</span></span><br><span class="line"><span class="string">       &quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&quot;kang\njiayin \ngood\n&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Common-Operations常用操作"><a href="#Common-Operations常用操作" class="headerlink" title="Common Operations常用操作"></a>Common Operations常用操作</h3><h4 id="Index索引"><a href="#Index索引" class="headerlink" title="Index索引"></a>Index索引</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>findfirst(char, string)</code></td>
+<td>找到第一个<code>char</code></td>
+</tr>
+<tr>
+<td><code>findlast(char, string)</code></td>
+<td>找到最后一个<code>char</code></td>
+</tr>
+<tr>
+<td><code>findnext(char, string ,num)</code></td>
+<td>从<code>num</code>算起，找下一个<code>char</code></td>
+</tr>
+<tr>
+<td><code>findprev(char, string ,num)</code></td>
+<td>从<code>num</code>算起，找上一个<code>char</code></td>
+</tr>
+<tr>
+<td><code>occurs(string1, string2)</code></td>
+<td>找<code>string1</code>是否在<code>string2</code>中，返回布尔值</td>
+</tr>
+</tbody></table>
+<h4 id="Special-Index特殊的索引"><a href="#Special-Index特殊的索引" class="headerlink" title="Special Index特殊的索引"></a>Special Index特殊的索引</h4><table>
+<thead>
+<tr>
+<th><code>firstindex(string)</code></th>
+<th>给出第一个&#x3D;&#x3D;字节byte&#x3D;&#x3D;的索引，通常为1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>lasrindex(string)</code></td>
+<td>给出最大&#x3D;&#x3D;字节byte&#x3D;&#x3D;的索引，</td>
+</tr>
+<tr>
+<td><code>length(string)</code></td>
+<td>字符的个数</td>
+</tr>
+<tr>
+<td><code>length(string,i,j)</code></td>
+<td>从<code>i</code>到<code>j</code>&#x3D;&#x3D;有效&#x3D;&#x3D;字符的个数</td>
+</tr>
+<tr>
+<td><code>ncodeunits(string)</code></td>
+<td>&#x3D;&#x3D;Number unit码元&#x3D;&#x3D;的个数</td>
+</tr>
+<tr>
+<td><code>codeunit(string,i)</code></td>
+<td>给出在字符串 <code>str</code> 中索引为 <code>i</code> 的代码单元值。</td>
+</tr>
+<tr>
+<td><code>thisind(string,i)</code></td>
+<td>给出给定<code>i</code>处字符的索引值</td>
+</tr>
+<tr>
+<td><code>nextind(string,i,n=1)</code></td>
+<td>给出给定<code>i</code>后字符的索引值</td>
+</tr>
+<tr>
+<td><code>prevint(string,i,n=1)</code></td>
+<td>给出给定<code>i</code>前字符的索引值</td>
+</tr>
+</tbody></table>
+<p>定义：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; kang=<span class="string">&quot;kangjj&quot;</span></span><br><span class="line"><span class="string">&quot;kangjj&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; jia=<span class="string">&quot;kangjiayin&quot;</span></span><br><span class="line"><span class="string">&quot;kangjiayin&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>实验：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; ncodeunits(kang)</span><br><span class="line"><span class="number">9</span></span><br><span class="line"></span><br><span class="line">julia&gt; thisind(kang,<span class="number">2</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"></span><br><span class="line">julia&gt; thisind(kang,<span class="number">3</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"></span><br><span class="line">julia&gt; thisind(kang,<span class="number">4</span>)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"></span><br><span class="line">julia&gt; length(kang)</span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line">julia&gt; prevind(kang,<span class="number">4</span>)</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Tricks小操作"><a href="#Tricks小操作" class="headerlink" title="Tricks小操作"></a>Tricks小操作</h4><p>另外还有两个方便的字符串函数 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/arrays/#Base.repeat"><code>repeat</code></a> 和 <a target="_blank" rel="noopener" href="https://docs.juliacn.com/latest/base/strings/#Base.join"><code>join</code></a>：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; repeat(<span class="string">&quot;.:Z:.&quot;</span>, <span class="number">10</span>)</span><br><span class="line"><span class="string">&quot;.:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:..:Z:.&quot;</span></span><br><span class="line"></span><br><span class="line">julia&gt; join([<span class="string">&quot;apples&quot;</span>, <span class="string">&quot;bananas&quot;</span>, <span class="string">&quot;pineapples&quot;</span>], <span class="string">&quot;, &quot;</span>, <span class="string">&quot; and &quot;</span>)</span><br><span class="line"><span class="string">&quot;apples, bananas and pineapples&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Non-Standard-String-Literals非标准字符串"><a href="#Non-Standard-String-Literals非标准字符串" class="headerlink" title="Non-Standard String Literals非标准字符串"></a>Non-Standard String Literals非标准字符串</h3><h4 id="Regular-Expressions正则表达式"><a href="#Regular-Expressions正则表达式" class="headerlink" title="Regular Expressions正则表达式"></a>Regular Expressions正则表达式</h4><ul>
+<li><p>Julia采用和perl[^perl]兼容正则表达式(regexes);</p>
+</li>
+<li><p><code>r&quot; &quot;</code>开头;</p>
+</li>
+<li><p>检查是否匹配用<code>occursin(regexes,string)</code>;</p>
+</li>
+<li><p>获取匹配信息用<code>match(regexes,string,n=1)</code>;</p>
+</li>
+<li><p>从<code>match</code>对象提取信息：</p>
+<blockquote>
+<ul>
+<li>匹配的整个子字符串：<code>m.match</code></li>
+<li>作为字符串数组捕获的子字符串：<code>m.captures</code></li>
+<li>整个匹配开始处的偏移：<code>m.offset</code></li>
+<li>作为向量的捕获子字符串的偏移：<code>m.offsets</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>PCRE[^pcre]正则表达式</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\</td>
+<td>将下一个字符标记为一个特殊字符，或一个原义字符，或一个向后引用，或一个八进制转义符。例如，”\n”匹配一个换行符。</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配输入字符串的开始位置。</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配输入字符串的结束位置。</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配前面的子表达式零次或多次，等价于{0,}</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前面的子表达式一次或多次，等价于{1,}</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配前面的子表达式零次或一次，等价于{0,1}</td>
+</tr>
+<tr>
+<td>?</td>
+<td>当该字符紧跟在任何一个其他限制符(*,+,?,{n},{n,},{n,m})后面时，匹配模式是非贪婪的。非贪婪模式尽可能少地匹配所搜索的字符串，而默认的贪婪模式则尽可能多地匹配所搜索的字符串。例如，对于字符串”oooo”,”o+?”将匹配单个”o”,而”o+”将匹配所有的”o”。</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>N是一个非负整数，匹配确定的n次。</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>N是一个非负整数，至少匹配n次。</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>M和n均为非负整数，其中n&lt;&#x3D;m，最少匹配n次且最多匹配m次。</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配除”\n”之外的任何单个字符。要匹配包括”\n”在内的任何字符，请使用像”[.\n]”的模式</td>
+</tr>
+<tr>
+<td>(pattern)</td>
+<td>匹配pattern并获取这一匹配。</td>
+</tr>
+<tr>
+<td>(?:pattern)</td>
+<td>匹配pattern但不获取匹配结果。这在使用“或”字符(|)来组合一个模式的各个部分是很有用的。例如:’industry|industries’就可以用’industr(?:y|ies)’代替</td>
+</tr>
+<tr>
+<td>(?&#x3D;pattern)</td>
+<td>正向预查，在任何匹配pattern的字符串开始处匹配查找字符串。例如：”Windows(?&#x3D;95|98|NT|2000)”能匹配”Windows2000”中的”Windows”，但不能匹配”Windows3.1”中的”Windows”。</td>
+</tr>
+<tr>
+<td>(?!pattern)</td>
+<td>负向预查，在任何不匹配pattern的字符串开始处匹配查找字符串。例如：”Windows(?!95|98|NT|2000)”能匹配”Windows3.1”中的”Windows”，但不能匹配”Windows2000”中的”Windows”。</td>
+</tr>
+<tr>
+<td>x|y</td>
+<td>匹配x或y。</td>
+</tr>
+<tr>
+<td>[xyz]</td>
+<td>字符集合，匹配所包含的任何一个字符。</td>
+</tr>
+<tr>
+<td>[^xyz]</td>
+<td>负值字符集合，匹配未包含的任意字符。</td>
+</tr>
+<tr>
+<td>[a-z]</td>
+<td>字符范围，匹配指定范围内的任意字符。</td>
+</tr>
+<tr>
+<td>[^a-z]</td>
+<td>负值字符范围，匹配任何不在指定范围内的任意字符。</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配一个单词边界，也就是单词和空格间的位置。</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配非单词边界。</td>
+</tr>
+<tr>
+<td>\cx</td>
+<td>匹配由x指明的控制字符。X的值必须为A-Z或a-z之间</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配一个数字字符。等价于[0-9]</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配一个非数字字符。等价于[^0-9]</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>匹配一个换页符。等价于\x0c和\cL</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配一个换行符。等价于\x0a和\cJ</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>匹配一个回车符。等价于\x0d和\cM</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任何空白字符，包括空格、制表符、换页符等。</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任何非空白符。</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>匹配一个制表符</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配包括下划线的任何单词字符。等价于[a-zA-Z0-9_]</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配任何非单词字符。</td>
+</tr>
+<tr>
+<td>\xn</td>
+<td>匹配n，其中n为十六进制转义值。例如”\x41”匹配”A”。</td>
+</tr>
+<tr>
+<td>\num</td>
+<td>匹配num，其中num是一个正整数。对所获取的匹配的引用。例如：”(.)\1”</td>
+</tr>
+</tbody></table>
+<h4 id="Byte-Array-Literals"><a href="#Byte-Array-Literals" class="headerlink" title="Byte Array Literals"></a>Byte Array Literals</h4><h4 id="Version-Number-Literals"><a href="#Version-Number-Literals" class="headerlink" title="Version Number Literals"></a>Version Number Literals</h4><h4 id="Raw-String-Literals原始字符串"><a href="#Raw-String-Literals原始字符串" class="headerlink" title="Raw String Literals原始字符串"></a>Raw String Literals原始字符串</h4><p>引号仍必须转义，例如 <code>raw&quot;\&quot;&quot;</code> 等效于 <code>&quot;\&quot;&quot;</code>。为了能够表达所有字符串，反斜杠也必须转义，不过只是当它刚好出现在引号前面时。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; println(<span class="string">raw&quot;\\ \\\&quot;&quot;</span>)</span><br><span class="line">\\ \<span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Function函数"><a href="#Function函数" class="headerlink" title="Function函数"></a>Function函数</h2><p>Julia中，定义函数的语法为：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">julia&gt; <span class="keyword">function</span> get(x,y)</span><br><span class="line">           x+y</span><br><span class="line">       <span class="keyword">end</span></span><br><span class="line">get (generic <span class="keyword">function</span> with <span class="number">1</span> method)</span><br><span class="line"></span><br><span class="line">julia&gt; get(<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>另一种定义语法为自然语言直接定义。</p>
+<h2 id="Multi-Dimensional-Arrays多维数组"><a href="#Multi-Dimensional-Arrays多维数组" class="headerlink" title="Multi Dimensional Arrays多维数组"></a>Multi Dimensional Arrays多维数组</h2><p>[^1]:<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E7%A8%8B">https://zh.wikipedia.org/wiki/%E5%8D%8F%E7%A8%8B</a> <strong>协程</strong>（英语：coroutine）是计算机程序的一类组件，推广了<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E4%BD%9C%E5%BC%8F%E5%A4%9A%E4%BB%BB%E5%8A%A1">协作式多任务</a>的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AD%90%E7%A8%8B%E5%BA%8F">子程序</a>，允许执行被挂起与被恢复。相对子例程而言，协程更为一般和灵活，但在实践中使用没有子例程那样广泛。协程更适合于用来实现彼此熟悉的程序组件，如<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E4%BD%9C%E5%BC%8F%E5%A4%9A%E4%BB%BB%E5%8A%A1">协作式多任务</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">异常处理</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF">事件循环</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%BF%AD%E4%BB%A3%E5%99%A8">迭代器</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%83%B0%E6%80%A7%E6%B1%82%E5%80%BC">无限列表</a>和<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%AE%A1%E9%81%93_(%E8%BD%AF%E4%BB%B6)">管道</a>。</p>
+<p>[^perl]:<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Perl">https://zh.wikipedia.org/wiki/Perl</a> <strong>Perl</strong>是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80">高端</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">通用</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%9B%B4%E8%AD%AF%E8%AA%9E%E8%A8%80">解释型</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80">动态</a>的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80">编程语言家族</a>。<br>[^pcre]:<a target="_blank" rel="noopener" href="https://perldoc.perl.org/perlre#Modifiers">https://perldoc.perl.org/perlre#Modifiers</a></p>
+
+  </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2019/12/10/Markdown-Reference-For-Chinese/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2021/04/10/%E6%9C%89%E9%99%90%E7%BE%A4/">&lt;&nbsp;NEWER</a>
+          
+            
+</div>
+        <div class="footer">
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/leedom92/hexo-theme-leedom">Copyright © Leedom 2021</a>
+        
+    </div>
+  
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/leedom92/hexo-theme-leedom">Theme by Leedom | Powered by Hexo</a>
+        
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+      
+  <div class="search-icon" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-box">
+        <div class="search-title">
+          <!-- <span class="search-icon-input">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </span> -->
+          
+            <input type="text" class="search-input" id="search-input" placeholder="搜索">
+          
+          <span class="search-close-icon" id="search-close-icon">
+            <a href="javascript: void(0)">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </span>
+        </div>
+        <div class="search-result" id="search-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    // inputArea.onclick = function() {
+    //   getSearchFile()
+    //   this.onclick = null
+    // }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        inputArea.focus()
+        getSearchFile()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'><span></ul>";
+      // $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='/" + data_url + "' class='search-result-title'><h2>" + orig_data_title + "</h2></a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<h3 class=\"search-result-abstract\">" + match_content + "...</h3>"
+                }
+                str += "<hr></li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/leedom92/hexo-theme-leedom#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+    </div>
+  </body>
+</html>

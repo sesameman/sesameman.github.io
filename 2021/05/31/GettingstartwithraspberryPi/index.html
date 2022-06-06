@@ -11,7 +11,7 @@
   
   <title>
     
-      archive_a: 2022/6 
+      Getting start with raspberryPi 
       
       
     
@@ -33,6 +33,10 @@
 
 
   
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
 
   
 
@@ -74,100 +78,65 @@
 
 
       <div class="main">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2022</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="Mac(全平台)投屏到安卓开源软件">
-        <div class="time-m-d">06-03</div>
-        <div class="title">
-          <a href="/2022/06/03/Mac(%E5%85%A8%E5%B9%B3%E5%8F%B0)%E6%8A%95%E5%B1%8F%E5%88%B0%E5%AE%89%E5%8D%93%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/">
-            
-              <span>Mac(全平台)投屏到安卓开源软件</span>
-            
-          </a>
-        </div>
-      </div>
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2021</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="Getting start with raspberryPi">
-        <div class="time-m-d">05-31</div>
-        <div class="title">
-          <a href="/2021/05/31/GettingstartwithraspberryPi/">
-            
-              <span>Getting start with raspberryPi</span>
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="李群李代数-有限群总结">
-        <div class="time-m-d">04-10</div>
-        <div class="title">
-          <a href="/2021/04/10/%E6%9C%89%E9%99%90%E7%BE%A4/">
-            
-              <span>李群李代数-有限群总结</span>
-            
-          </a>
-        </div>
-      </div>
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2020</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="Getting Started with Julia">
-        <div class="time-m-d">01-10</div>
-        <div class="title">
-          <a href="/2020/01/10/Getting-Started-with-Julia/">
-            
-              <span>Getting Started with Julia</span>
-            
-          </a>
-        </div>
-      </div>
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2019</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="Markdown For Typora(中文)">
-        <div class="time-m-d">12-10</div>
-        <div class="title">
-          <a href="/2019/12/10/Markdown-Reference-For-Chinese/">
-            
-              <span>Markdown For Typora(中文)</span>
-            
-          </a>
-        </div>
-      </div>
-    
+<div class="post">
+  <h3 class="date">
+    May 31, 2021
+  </h3>
+  <h1>
+    Getting start with raspberryPi
+  </h1>
+  <div class="content markdown-body">
+    <h1 id="Getting-start-with-raspberryPi"><a href="#Getting-start-with-raspberryPi" class="headerlink" title="Getting start with raspberryPi"></a>Getting start with raspberryPi</h1><p>树莓派是基于<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Linux">Linux</a>的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8D%95%E7%89%87%E6%9C%BA">单片机</a>电脑，由<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%8B%B1%E5%9C%8B">英国</a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%9F%BA%E9%87%91%E4%BC%9A">树莓派基金会</a>开发，目的是以低价硬件及自由软件促进学校的基本计算机科学教育。</p>
+<p>树莓派的优势：</p>
+<ol>
+<li><p>体积小巧，面积约为信用卡大小，高度约为4 cm；</p>
+</li>
+<li><p>高度可扩展（以树莓派4B为例）：有可编程针脚、有一个千兆网口（故而可以做软路由，NAS等）、支持单口4K60HZ输出，双口4K30HZ输出，type-c供电，两个usb3.0，两个usb2.0接口；</p>
+</li>
+<li><p>价格便宜，在官方提供的<a target="_blank" rel="noopener" href="https://www.raspberrypi.org/products/raspberry-pi-4-model-b/?variant=raspberry-pi-4-model-b-8gb">商城链接</a>8GB-RAM版本只需要520元；</p>
+<p>![截屏2021-05-15 上午10.23.14](&#x2F;Users&#x2F;kjy&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;截屏2021-05-15 上午10.23.14.png)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://asmcn.icopy.site/awesome/awesome-raspberry-pi/">用途广泛</a>，以后不用了还可以做这些事情；</p>
+</li>
+<li><p>如果你选择装他自己做的系统&#x3D;&#x3D;raspberryOS&#x3D;&#x3D;(基于Debian)，系统会自带Mathematica及其内核，我觉得应该是免费的（就是给教育者的优惠一类的）。</p>
+</li>
+</ol>
+<p>树莓派的特点（不知道算是优点还是缺点）：</p>
+<ol>
+<li>树莓派采用ARM（具体可以百度下）架构，优点也有缺点也有，我不好说；</li>
+<li>只有一块儿芯片，所有显示器键盘鼠标都得额外购买（也可以写好Wi-Fi连接文件，直接用SSH连接，但在校园网环境中难度有点大），可以选购官方套件（带外壳显示器键盘一类的）。但最好我觉得就是从闲鱼上买一块儿，便宜好多；</li>
+</ol>
+<p>树莓派的缺点：</p>
+<ol>
+<li>性能不大行，我购买的raspberryPi-4B应该是树莓派性能天花板了，如果装了ubuntu图形界面则会卡顿（使用自己的raspberryos不卡）；</li>
+</ol>
+<p>子祺自行斟酌吧！</p>
+
   </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2021/04/10/%E6%9C%89%E9%99%90%E7%BE%A4/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2022/06/03/Mac(%E5%85%A8%E5%B9%B3%E5%8F%B0)%E6%8A%95%E5%B1%8F%E5%88%B0%E5%AE%89%E5%8D%93%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/">&lt;&nbsp;NEWER</a>
+          
+            
 </div>
-
         <div class="footer">
   
     <div class="footer-more">

@@ -11,7 +11,7 @@
   
   <title>
     
-      archive_a: 2022/6 
+      李群李代数-有限群总结 
       
       
     
@@ -33,6 +33,10 @@
 
 
   
+
+  
+    
+<link rel="stylesheet" href="/css/post.css">
 
   
 
@@ -74,100 +78,117 @@
 
 
       <div class="main">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
+<!-- LaTex Display -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2022</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="Mac(全平台)投屏到安卓开源软件">
-        <div class="time-m-d">06-03</div>
-        <div class="title">
-          <a href="/2022/06/03/Mac(%E5%85%A8%E5%B9%B3%E5%8F%B0)%E6%8A%95%E5%B1%8F%E5%88%B0%E5%AE%89%E5%8D%93%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/">
-            
-              <span>Mac(全平台)投屏到安卓开源软件</span>
-            
-          </a>
-        </div>
-      </div>
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2021</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="Getting start with raspberryPi">
-        <div class="time-m-d">05-31</div>
-        <div class="title">
-          <a href="/2021/05/31/GettingstartwithraspberryPi/">
-            
-              <span>Getting start with raspberryPi</span>
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="李群李代数-有限群总结">
-        <div class="time-m-d">04-10</div>
-        <div class="title">
-          <a href="/2021/04/10/%E6%9C%89%E9%99%90%E7%BE%A4/">
-            
-              <span>李群李代数-有限群总结</span>
-            
-          </a>
-        </div>
-      </div>
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2020</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="Getting Started with Julia">
-        <div class="time-m-d">01-10</div>
-        <div class="title">
-          <a href="/2020/01/10/Getting-Started-with-Julia/">
-            
-              <span>Getting Started with Julia</span>
-            
-          </a>
-        </div>
-      </div>
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2019</span>
-          </h2>
-        </div>
-      
-      <div class="post-item" title="Markdown For Typora(中文)">
-        <div class="time-m-d">12-10</div>
-        <div class="title">
-          <a href="/2019/12/10/Markdown-Reference-For-Chinese/">
-            
-              <span>Markdown For Typora(中文)</span>
-            
-          </a>
-        </div>
-      </div>
-    
+<div class="post">
+  <h3 class="date">
+    Apr 10, 2021
+  </h3>
+  <h1>
+    李群李代数-有限群总结
+  </h1>
+  <div class="content markdown-body">
+    <h1 id="李群李代数"><a href="#李群李代数" class="headerlink" title="李群李代数"></a>李群李代数</h1><h2 id="第一章：有限群"><a href="#第一章：有限群" class="headerlink" title="第一章：有限群"></a>第一章：有限群</h2><h3 id="有限群的定义"><a href="#有限群的定义" class="headerlink" title="有限群的定义"></a>有限群的定义</h3><ul>
+<li>封闭性：两个群元素的乘积也是群元素；</li>
+<li>结合律：</li>
+<li>存在元素1</li>
+<li>存在逆元素<h3 id="Something-about-group"><a href="#Something-about-group" class="headerlink" title="Something about group"></a>Something about group</h3><h4 id="群的表示"><a href="#群的表示" class="headerlink" title="群的表示"></a>群的表示</h4><blockquote>
+<p>群G的表示D是一种映射有以下性质：</p>
+</blockquote>
+</li>
+<li>$D(e)&#x3D;1$</li>
+<li>$D(a)D(b)&#x3D;D(ab)$</li>
+</ul>
+<h4 id="群的阶：群元素的数量"><a href="#群的阶：群元素的数量" class="headerlink" title="群的阶：群元素的数量"></a>群的阶：群元素的数量</h4><h4 id="元素的阶（秩）-最小的使得-A-alpha-x3D-E-的-alpha"><a href="#元素的阶（秩）-最小的使得-A-alpha-x3D-E-的-alpha" class="headerlink" title="元素的阶（秩）:最小的使得$A^\alpha&#x3D;E$的$\alpha$"></a>元素的阶（秩）:最小的使得$A^\alpha&#x3D;E$的$\alpha$</h4><h4 id="共轭元素：-XA-iX-1-x3D-A-j"><a href="#共轭元素：-XA-iX-1-x3D-A-j" class="headerlink" title="共轭元素：$XA_iX^{-1}&#x3D;A_j$"></a>共轭元素：$XA_iX^{-1}&#x3D;A_j$</h4><h4 id="共轭元素类：所有共轭元素组合的类"><a href="#共轭元素类：所有共轭元素组合的类" class="headerlink" title="共轭元素类：所有共轭元素组合的类"></a>共轭元素类：所有共轭元素组合的类</h4><h4 id="几种常见的有限群："><a href="#几种常见的有限群：" class="headerlink" title="几种常见的有限群："></a>几种常见的有限群：</h4><ul>
+<li>阿贝尔群</li>
+<li>循环群</li>
+<li>置换群</li>
+</ul>
+<h3 id="群之间的关系"><a href="#群之间的关系" class="headerlink" title="群之间的关系"></a>群之间的关系</h3><h4 id="子群"><a href="#子群" class="headerlink" title="子群"></a>子群</h4><blockquote>
+<p>若群的一部分元素组成的集合H，仍对G的乘法构成群，则H是G的子群</p>
+</blockquote>
+<ul>
+<li>H中任意两个元素的乘积仍在H中；</li>
+<li>H中每一元素的逆元素仍在H中；<h5 id="共轭子群"><a href="#共轭子群" class="headerlink" title="共轭子群"></a>共轭子群</h5><blockquote>
+<p>H是G的子群，H所有元素对G中的元素g取共轭元素组成的另一个子群</p>
+</blockquote>
+<h5 id="不变子群"><a href="#不变子群" class="headerlink" title="不变子群"></a>不变子群</h5><blockquote>
+<p>左右陪集相同的群</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="陪集coset"><a href="#陪集coset" class="headerlink" title="陪集coset"></a>陪集coset</h4><blockquote>
+<p>H为G的子群，g为G的元素</p>
+</blockquote>
+<ul>
+<li>左陪集：$gH&#x3D;{g,gh_1,gh_2,…}$</li>
+<li>右陪集：$gH&#x3D;{g,h_1g,h_2g,…}$<blockquote>
+<p>相关定理</p>
+<ul>
+<li>陪集的元素互不相同，也不同于子群的元素；</li>
+<li>同一子群的左右陪集元素完全相同或者完全不同；</li>
+<li>子群H的阶h是G的阶g的因子；</li>
+</ul>
+</blockquote>
+<h4 id="直乘积群-Direct-product-of-groups"><a href="#直乘积群-Direct-product-of-groups" class="headerlink" title="直乘积群 Direct product of groups"></a>直乘积群 Direct product of groups</h4><blockquote>
+<p>H和F是G的两个子群H中的任意元素$h_i$与F的任意元素$f_j$对易，即$h_if_j&#x3D;f_jh_i$,则$G&#x3D;{h_if_j}$是F与H的直乘积群</p>
+</blockquote>
+<h4 id="商群factor-group"><a href="#商群factor-group" class="headerlink" title="商群factor group"></a>商群factor group</h4></li>
+<li>定义：将不变子群$H_n$以及不同的陪集${H_nx_1,H_nx_2,H_nx_3,…}$等看作元素，元素之间的乘积看作内积，这些元素构成的集合为商群，常以$\frac{G}{H_n}$表示</li>
+<li>我觉得要不我理解有问题，要不定义有问题；（现在觉得没问题了）</li>
+<li>根据wiki的定义：$H_n$的所有左陪集的集合；</li>
+</ul>
+<h4 id="同构与同态"><a href="#同构与同态" class="headerlink" title="同构与同态"></a>同构与同态</h4><h5 id="同构：两个群的元素满足一一对应，且满足同样的乘法规则。"><a href="#同构：两个群的元素满足一一对应，且满足同样的乘法规则。" class="headerlink" title="同构：两个群的元素满足一一对应，且满足同样的乘法规则。"></a>同构：两个群的元素满足一一对应，且满足同样的乘法规则。</h5><h5 id="同态：几个元素对应一个"><a href="#同态：几个元素对应一个" class="headerlink" title="同态：几个元素对应一个"></a>同态：几个元素对应一个</h5><h4 id="核"><a href="#核" class="headerlink" title="核"></a>核</h4><h4 id="直乘积群"><a href="#直乘积群" class="headerlink" title="直乘积群"></a>直乘积群</h4><ul>
+<li>不好书</li>
+<li>、</li>
+</ul>
+<h4 id="群表述的直乘积"><a href="#群表述的直乘积" class="headerlink" title="群表述的直乘积"></a>群表述的直乘积</h4><h3 id="群的表示-1"><a href="#群的表示-1" class="headerlink" title="群的表示"></a>群的表示</h3><h4 id="等价表示"><a href="#等价表示" class="headerlink" title="等价表示"></a>等价表示</h4><ul>
+<li>任意两个表示$\tau_1$、$\tau_2$，存在矩阵T，使得对于任意群元素$g$有$D_1(g)&#x3D;TD_2(g)T^{-1}$。<h4 id="可约表示"><a href="#可约表示" class="headerlink" title="可约表示"></a>可约表示</h4></li>
+<li>存在一个等价的表示，为一个元素为0的分块儿矩阵。<h4 id="完全可约矩阵"><a href="#完全可约矩阵" class="headerlink" title="完全可约矩阵"></a>完全可约矩阵</h4></li>
+<li>存在一个等价表示，分块儿对角。</li>
+</ul>
+<h3 id="正规regular表示"><a href="#正规regular表示" class="headerlink" title="正规regular表示"></a>正规regular表示</h3><ul>
+<li>群元素构成的矢量空间的正交基矢</li>
+</ul>
+<h3 id="特征标"><a href="#特征标" class="headerlink" title="特征标"></a>特征标</h3><blockquote>
+<p>一个n阶群的表示的迹的集合。</p>
+</blockquote>
+<blockquote>
+<p>性质<br>同一共轭元素类有同样的特征标<br>等价表示有相同的特征标<br>一些正交关系</p>
+</blockquote>
+<h3 id="相关定理"><a href="#相关定理" class="headerlink" title="相关定理"></a>相关定理</h3><blockquote>
+<ul>
+<li>有限群的表示等价于幺正表示</li>
+<li>有限群的可约幺正表示为完全可约表示</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>根据上两条：有限群可约必定完全可约</p>
+</blockquote>
+<h4 id="休尔家族"><a href="#休尔家族" class="headerlink" title="休尔家族"></a>休尔家族</h4><h5 id="引理1"><a href="#引理1" class="headerlink" title="引理1"></a>引理1</h5><h5 id="引理2"><a href="#引理2" class="headerlink" title="引理2"></a>引理2</h5><h4 id="正交定理"><a href="#正交定理" class="headerlink" title="正交定理"></a>正交定理</h4><h4 id="不等价不可约表示的总数等于G的共轭元素类的个数"><a href="#不等价不可约表示的总数等于G的共轭元素类的个数" class="headerlink" title="不等价不可约表示的总数等于G的共轭元素类的个数"></a>不等价不可约表示的总数等于G的共轭元素类的个数</h4><h4 id="Bumside定理：所有表示的维数平方和为G的阶"><a href="#Bumside定理：所有表示的维数平方和为G的阶" class="headerlink" title="Bumside定理：所有表示的维数平方和为G的阶"></a>Bumside定理：所有表示的维数平方和为G的阶</h4>
   </div>
+  
+    
+      <a id="older" class="blog-nav" href="/2020/01/10/Getting-Started-with-Julia/">OLDER&nbsp;&gt;</a>
+      
+        
+          <a id="newer" class="blog-nav" href="/2021/05/31/GettingstartwithraspberryPi/">&lt;&nbsp;NEWER</a>
+          
+            
 </div>
-
         <div class="footer">
   
     <div class="footer-more">
